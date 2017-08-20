@@ -9,13 +9,14 @@
 import UIKit
 
 class toneTableViewController: UITableViewController {
+    
+    // This will recieve the index from Root
+    var intIndex =  Int()
 
 // MARK: - Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        MyGlobals.shared.arrTone = MyGlobals.shared.mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +40,16 @@ class toneTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "toneTableViewCell", for: indexPath) as! toneTableViewCell
         cell.lblTone.text = MyGlobals.shared.arrTone[indexPath.row]
+        
+        let currRow = indexPath.row
+        let toneId = MyGlobals.shared.arrTask[intIndex].ToneId
+        
+        if (toneId == currRow) {
+            cell.btnCheckTone.setImage(MyGlobals.shared.imgChecked_Small, for: .normal)
+        } else {
+            cell.btnCheckTone.setImage(MyGlobals.shared.imgUnChecked_Small, for: .normal)
+        }
+        
         return cell
     }
     
@@ -60,22 +71,6 @@ class toneTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-//        // mjNotes: Pass the selected row to the new View
-//        
-//        
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        
-//        if (segue.identifier == "segueEditViewController") {
-//            var selectedIndexPath: IndexPath = self.tableView.indexPathForSelectedRow!
-//            let editVC: editViewController = segue.destination as! editViewController
-//            
-//            // Pass the value
-//            editVC.strTask = gArrTask[selectedIndexPath.row].Task
-//            editVC.intIndex = selectedIndexPath.row
-//        }
-
     }
     
     // Reset all checkbox
@@ -83,8 +78,12 @@ class toneTableViewController: UITableViewController {
         let row = indexPath.row // mjNotes: Selected Row
         print("Row: \(row)")
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "toneTableViewCell", for: indexPath) as! toneTableViewCell
-        cell.btnCheckTone.setImage(MyGlobals.shared.imgUnChecked_Small, for: .normal)
+        MyGlobals.shared.arrTask[intIndex].ToneId = indexPath.row
+        
+        // Back to Root View Controller
+        // mjNotes: The "_ =" prevents the compiler from displaying a warning message
+//        _ = self.navigationController?.popToRootViewController(animated: true) // Root
+        _ = self.navigationController?.popViewController(animated: true)         // Previous
         
     }
     

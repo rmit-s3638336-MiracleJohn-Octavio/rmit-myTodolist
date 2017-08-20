@@ -177,7 +177,7 @@
         <!--Task List-->
         <scene sceneID="Fg2-Fr-eGx">
             <objects>
-                <tableViewController id="Dve-2F-lbL" customClass="MainTableViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Dve-2F-lbL" customClass="taskTableViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" id="gZi-Xs-ob7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,6 +436,9 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLj-ly-bQx">
                                                             <color key="backgroundColor" red="0.0039215686269999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="e4I-S9-exH"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="Today">
                                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -446,6 +449,9 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoS-FU-6Xc" userLabel="Btn Add Hrs">
                                                             <color key="backgroundColor" red="0.0039215686269999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="Swl-Ss-REb"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="+3 Hours">
                                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -456,6 +462,9 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAI-9X-aEy" userLabel="Btn Add Dys">
                                                             <color key="backgroundColor" red="0.0039215686269999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="msh-dS-Nti"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="+3 Days">
                                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -466,6 +475,9 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KnK-W2-Gx8" userLabel="Btn Add Wek">
                                                             <color key="backgroundColor" red="0.0039215686269999999" green="0.36862745099999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="27" id="jiJ-00-XoA"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <state key="normal" title="+1 Week">
                                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -479,8 +491,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="sVw-ct-nKj" secondAttribute="trailing" id="863-Pj-AKJ"/>
-                                                <constraint firstItem="sVw-ct-nKj" firstAttribute="centerY" secondItem="ClU-vM-h4J" secondAttribute="centerY" id="9fT-Hi-BM1"/>
+                                                <constraint firstAttribute="bottom" secondItem="sVw-ct-nKj" secondAttribute="bottom" id="DBL-bo-gOU"/>
                                                 <constraint firstItem="sVw-ct-nKj" firstAttribute="leading" secondItem="ClU-vM-h4J" secondAttribute="leading" id="tC6-Jo-tHq"/>
+                                                <constraint firstItem="sVw-ct-nKj" firstAttribute="top" secondItem="ClU-vM-h4J" secondAttribute="top" id="zae-fh-VhQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -506,7 +519,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="c4G-A6-bKI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="toneTableViewCell" id="c4G-A6-bKI">
                                         <rect key="frame" x="0.0" y="390" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c4G-A6-bKI" id="mYW-pW-00j">
@@ -521,7 +534,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Beep)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7Q-bp-4jz">
-                                                    <frame key="frameInset" minX="233" minY="11" width="101" height="21"/>
+                                                    <frame key="frameInset" minX="144" minY="11" width="190" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -530,7 +543,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="64T-R0-7Qd" kind="show" id="UpD-D0-ZQ8"/>
+                                            <segue destination="64T-R0-7Qd" kind="show" identifier="segueToneView" id="UpD-D0-ZQ8"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -560,6 +573,7 @@
                         <outlet property="btnSetToday" destination="gLj-ly-bQx" id="hbh-cL-pgo"/>
                         <outlet property="dtpTask" destination="EQ7-KL-FVr" id="gci-XM-QPZ"/>
                         <outlet property="lblDateTimeSelected" destination="75a-HA-uom" id="bd9-XT-WHl"/>
+                        <outlet property="lblToneName" destination="W7Q-bp-4jz" id="NS6-K2-SOk"/>
                         <outlet property="navItem" destination="DVx-QX-fsD" id="fck-Tl-EOP"/>
                         <outlet property="swtIsAlarmMessageOn" destination="tQo-F1-QeB" id="k4D-QC-ZWs"/>
                         <outlet property="txtTask" destination="bQe-s3-eyT" id="WNg-oQ-gId"/>
@@ -567,7 +581,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFb-Jl-wHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="-848"/>
+            <point key="canvasLocation" x="2752.8000000000002" y="-848.72563718140941"/>
         </scene>
         <!--Alarm Tone-->
         <scene sceneID="oka-zE-btb">
@@ -652,6 +666,6 @@
         <image name="UnCheck_Small" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AWs-8X-Zd3"/>
+        <segue reference="bA5-Jm-oSa"/>
     </inferredMetricsTieBreakers>
 </document>

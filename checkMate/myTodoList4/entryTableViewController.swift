@@ -10,7 +10,8 @@ import UIKit
 
 class entryTableViewController: UITableViewController {
 
-    // MARK: - Controls
+// MARK: - Controls
+    
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var swtIsAlarmMessageOn: UISwitch!
     
@@ -29,6 +30,9 @@ class entryTableViewController: UITableViewController {
     @IBOutlet weak var btnAddDys: UIButton!
     @IBOutlet weak var btnAddWek: UIButton!
     
+    // Tone
+    @IBOutlet weak var lblToneName: UILabel!
+    
     
 // MARK: - Variables
     
@@ -39,13 +43,21 @@ class entryTableViewController: UITableViewController {
     // Used for Add and Edit
     var enmOperation = genmOperation.Add
     
-    // Used for Edit
+    // This will recieve the index from Root
     var intIndex =  Int()
     
 // MARK: - Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        displayDataEntry()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        displayDataEntry() // Display Data Entry
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         displayDataEntry() // Display Data Entry
     }
     
@@ -57,6 +69,7 @@ class entryTableViewController: UITableViewController {
             txtTask.text = ""
             dtpTask.date = Date()
             swtIsAlarmMessageOn.setOn(true, animated: true)
+            lblToneName.text = "(" + MyGlobals.shared.arrTone[0] + ")"
             
             // Set focus
             txtTask.becomeFirstResponder()
@@ -66,6 +79,7 @@ class entryTableViewController: UITableViewController {
             txtTask.text = MyGlobals.shared.arrTask[intIndex].Task
             dtpTask.date  = MyGlobals.shared.arrTask[intIndex].DateTime
             swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn == 1, animated: true)
+            lblToneName.text = "(" + MyGlobals.shared.arrTone[MyGlobals.shared.arrTask[intIndex].ToneId] + ")"
         }
         
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
@@ -113,6 +127,18 @@ class entryTableViewController: UITableViewController {
     
     @IBAction func dtpTask_ValueChanged(_ sender: UIDatePicker) {
         updateLblDateTimeSelected(sender)
+    }
+    
+// MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // var selectedIndexPath: IndexPath = self.tableView.indexPathForSelectedRow!
+        let tvc: toneTableViewController = segue.destination as! toneTableViewController
+        
+        if (segue.identifier == "segueToneView") {
+            tvc.intIndex = intIndex
+        }
     }
     
     
