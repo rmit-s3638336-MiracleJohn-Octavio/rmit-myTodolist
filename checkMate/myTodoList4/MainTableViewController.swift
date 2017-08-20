@@ -70,7 +70,7 @@ class MainTableViewController: UITableViewController {
     // mjNotes: This will fill up the cells with rows found
     // Data Load
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customTableViewCell", for: indexPath) as! customTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskTableViewCell", for: indexPath) as! taskTableViewCell
         
         cell.lblTask.text = MyGlobals.shared.arrTask[indexPath.row].Task
         cell.btnCheckTask.tag = indexPath.row
@@ -148,10 +148,10 @@ class MainTableViewController: UITableViewController {
         return UITableViewAutomaticDimension
     }
     
-    
     @IBAction func test(_ sender: AnyObject) {
         print(MyGlobals.shared.mDateToString(Date(),genmDateFormat.MonDayYrs))
     }
+    
     
 // MARK: - Unused Default Code
     

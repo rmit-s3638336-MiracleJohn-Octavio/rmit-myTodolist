@@ -24,6 +24,7 @@ struct gstruTask {
     var IsTaskComplete = Int()
     var DateTime = Date()
     var IsAlarmMessageOn = Int()
+    var ToneId = Int()
 }
 
 // Enumeration
@@ -52,10 +53,13 @@ class MyGlobals {
     
     // Array
     var arrTask = [gstruTask]()
+    var arrTone = [String]()
     
     // Images
     let imgChecked = UIImage(named: "Check.png")
     let imgUnChecked = UIImage(named: "unCheck.png")
+    let imgChecked_Small = UIImage(named: "Check_Small.png")
+    let imgUnChecked_Small = UIImage(named: "unCheck_Small.png")
     
     
 // MARK: - Methods

@@ -10,7 +10,8 @@ import UIKit
 
 class taskTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var btnCheckTask: chkButton!
+//    @IBOutlet weak var btnCheckTask: chkButton!
+    @IBOutlet weak var btnCheckTask: UIButton!
     @IBOutlet weak var lblTask: UILabel!
     @IBOutlet weak var lblDateTime: UILabel!
     
@@ -45,4 +46,5 @@ class taskTableViewCell: UITableViewCell {
             sender.setImage(MyGlobals.shared.imgUnChecked, for: .normal)
         }
     }
+
 }

@@ -9,29 +9,13 @@
 import UIKit
 
 class toneTableViewController: UITableViewController {
-    
-    
-// MARK: - Variables
-    
-        var arrTone = [String]()
-    
 
 // MARK: - Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        // mjNotes: Initialize the variables
-        arrTone = MyGlobals.shared.mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
-        
-        print(arrTone)
-        print(arrTone.count)
+        MyGlobals.shared.arrTone = MyGlobals.shared.mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,21 +31,15 @@ class toneTableViewController: UITableViewController {
     
     // mjNotes: Returns the total numnber of array elements
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrTone.count
+        return MyGlobals.shared.arrTone.count
     }
     
     // mjNotes: This will fill up the cells with rows found
     // Data Load
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
-        cell.textLabel?.text = arrTone[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "toneTableViewCell", for: indexPath) as! toneTableViewCell
+        cell.lblTone.text = MyGlobals.shared.arrTone[indexPath.row]
         return cell
-    }
-    
-    // mjNotes: If the row was selected
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row // mjNotes: Selected Row
-        print("Row: \(row)")
     }
     
     // mjNotes: Delete Row
@@ -99,5 +77,17 @@ class toneTableViewController: UITableViewController {
 //        }
 
     }
+    
+    // Reset all checkbox
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row // mjNotes: Selected Row
+        print("Row: \(row)")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "toneTableViewCell", for: indexPath) as! toneTableViewCell
+        cell.btnCheckTone.setImage(MyGlobals.shared.imgUnChecked_Small, for: .normal)
+        
+    }
+    
+    
 
 }
