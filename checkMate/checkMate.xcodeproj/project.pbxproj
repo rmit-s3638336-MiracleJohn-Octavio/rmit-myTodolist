@@ -21,6 +21,7 @@
 		20BE8F2B1F3C81B9009968B7 /* toneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE8F2A1F3C81B9009968B7 /* toneTableViewController.swift */; };
 		20BE8F2F1F3C9801009968B7 /* myGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE8F2E1F3C9801009968B7 /* myGlobals.swift */; };
 		20BE8F381F427490009968B7 /* galleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE8F371F427490009968B7 /* galleryCollectionViewController.swift */; };
+		20E8AD2E1F49204C00DF5B38 /* taskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8AD2D1F49204C00DF5B38 /* taskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		20BE8F2A1F3C81B9009968B7 /* toneTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = toneTableViewController.swift; sourceTree = "<group>"; };
 		20BE8F2E1F3C9801009968B7 /* myGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myGlobals.swift; sourceTree = "<group>"; };
 		20BE8F371F427490009968B7 /* galleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = galleryCollectionViewController.swift; sourceTree = "<group>"; };
+		20E8AD2D1F49204C00DF5B38 /* taskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				206D8CC11F36BB630052AA71 /* ViewController.swift */,
 				206D8CD31F36C2A40052AA71 /* MainTableViewController.swift */,
 				2065BDE91F39191800D4DF95 /* customTableViewCell.swift */,
+				20E8AD2D1F49204C00DF5B38 /* taskTableViewCell.swift */,
 				20BE8F281F3C6C8B009968B7 /* entryTableViewController.swift */,
 				20BE8F371F427490009968B7 /* galleryCollectionViewController.swift */,
 				20BE8F2A1F3C81B9009968B7 /* toneTableViewController.swift */,
@@ -193,6 +196,7 @@
 				206D8CD41F36C2A40052AA71 /* MainTableViewController.swift in Sources */,
 				2065BDEA1F39191800D4DF95 /* customTableViewCell.swift in Sources */,
 				209BFA7A1F3C269F006285F1 /* chkButton.swift in Sources */,
+				20E8AD2E1F49204C00DF5B38 /* taskTableViewCell.swift in Sources */,
 				20BE8F2F1F3C9801009968B7 /* myGlobals.swift in Sources */,
 				2065BDE61F375D8300D4DF95 /* editViewController.swift in Sources */,
 				20BE8F2B1F3C81B9009968B7 /* toneTableViewController.swift in Sources */,
