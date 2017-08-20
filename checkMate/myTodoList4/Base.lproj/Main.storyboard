@@ -82,7 +82,7 @@
         <scene sceneID="oyl-vw-IJS">
             <objects>
                 <collectionViewController id="oTk-Hs-CIM" customClass="galleryCollectionViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="TXh-uo-ih7">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TXh-uo-ih7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -265,50 +265,6 @@
             </objects>
             <point key="canvasLocation" x="1911.2" y="-731.78410794602701"/>
         </scene>
-        <!--Edit Task-->
-        <scene sceneID="NPk-dR-KIc">
-            <objects>
-                <viewController id="bcg-7w-7QQ" customClass="editViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="60u-H8-QBZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="gh1-ou-PvD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tcs-6A-7gu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="k2I-uL-a5I">
-                                <frame key="frameInset" minX="16" minY="100" width="171" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKI-ag-bkl">
-                                <frame key="frameInset" minX="16" minY="72" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Task" id="Zde-h9-oBu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2Gm-7t-LE4">
-                            <connections>
-                                <action selector="btnSave_Tapped:" destination="bcg-7w-7QQ" id="AI3-Mb-1HH"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="txtTask" destination="k2I-uL-a5I" id="3My-AD-Wbo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S2c-XT-9R9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2695.1999999999998" y="-128.18590704647679"/>
-        </scene>
         <!--Add Task-->
         <scene sceneID="QPU-Pl-Hd2">
             <objects>
@@ -432,9 +388,6 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="27" id="aGv-65-uUg"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -631,6 +584,20 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wp4-V9-48w" id="o4h-e0-2At">
                                     <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alarm Tone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB0-Q6-dfB">
+                                            <frame key="frameInset" minX="137" minY="11" width="101" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="UnCheck_Small" translatesAutoresizingMaskIntoConstraints="NO" id="Ftw-aL-nxg">
+                                            <frame key="frameInset" minX="342" minY="9" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -645,7 +612,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBK-Dk-78Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3543" y="-849"/>
+            <point key="canvasLocation" x="3541.5999999999999" y="-849.62518740629696"/>
         </scene>
         <!--Home-->
         <scene sceneID="sUa-4n-sH9">
@@ -675,6 +642,7 @@
         <image name="Home" width="26" height="26"/>
         <image name="Me" width="12" height="30"/>
         <image name="Settings" width="26" height="26"/>
+        <image name="UnCheck_Small" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AWs-8X-Zd3"/>

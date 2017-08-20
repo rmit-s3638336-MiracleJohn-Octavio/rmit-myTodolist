@@ -72,11 +72,11 @@
 		206D8CBE1F36BB630052AA71 /* checkMate */ = {
 			isa = PBXGroup;
 			children = (
+				206D8CC31F36BB630052AA71 /* Main.storyboard */,
 				20BE8F361F42741B009968B7 /* methods */,
 				20BE8F351F4273B0009968B7 /* uiControl */,
 				20BE8F341F427383009968B7 /* viewController */,
 				206D8CBF1F36BB630052AA71 /* AppDelegate.swift */,
-				206D8CC31F36BB630052AA71 /* Main.storyboard */,
 				206D8CC61F36BB630052AA71 /* Assets.xcassets */,
 				206D8CC81F36BB630052AA71 /* LaunchScreen.storyboard */,
 				206D8CCB1F36BB630052AA71 /* Info.plist */,

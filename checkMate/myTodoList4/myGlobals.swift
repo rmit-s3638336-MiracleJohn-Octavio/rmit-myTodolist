@@ -18,7 +18,7 @@ import UIKit // mjNotes: Added
 */
 
 
-// Structures
+// Structure
 struct gstruTask {
     var Task = String()
     var IsTaskComplete = Int()
