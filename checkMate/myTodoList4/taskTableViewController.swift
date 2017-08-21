@@ -34,12 +34,24 @@ class taskTableViewController: UITableViewController {
             lStruTask.ToneId = arrToneId[i]
             MyGlobals.shared.arrTask.append(lStruTask)
         }
+        
+        // Create Timer
+        let tmrReloadData = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
+        tmrReloadData.fire()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         // Sort the Array by Date Descending
         MyGlobals.shared.arrTask.sort{ $1.DateTime > $0.DateTime}
+        
         // Reload Data
+        reloadData()
+        
+    }
+    
+    func reloadData() {
         self.tableView.reloadData()
     }
     
@@ -71,6 +83,8 @@ class taskTableViewController: UITableViewController {
         }
     }
     
+// MARK: - Data Load
+    
     // mjNotes: This will fill up the cells with rows found
     // Data Load
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,12 +100,15 @@ class taskTableViewController: UITableViewController {
         
         if (dteDateOnList_DateFormat == dteDateToday_DateFormat) {
             // Today
-            cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMin)
+            
+            let elapsed = Date().timeIntervalSince(dteDateOnList_TimeFormat)
             if (dteDateOnList_TimeFormat < dteDateToday_TimeFormat) {
                 // Past
+                cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMinSec)
                 cell.lblDateTime.textColor = UIColor.red
             } else {
                 // Future
+                cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutesSeconds(Int(elapsed) * -1) + ")"
                 cell.lblDateTime.textColor = UIColor.darkGray
             }
         } else {
@@ -108,8 +125,19 @@ class taskTableViewController: UITableViewController {
         
         if (MyGlobals.shared.arrTask[indexPath.row].IsTaskComplete == 0 ) {
             cell.btnCheckTask.setImage(MyGlobals.shared.imgUnChecked, for: .normal)
+            
+            // Make it black
+            cell.lblTask.textColor = UIColor.black
         } else {
             cell.btnCheckTask.setImage(MyGlobals.shared.imgChecked, for: .normal)
+            
+            // Strikethrough
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.lblTask.text!)
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            cell.lblTask.attributedText = attributeString
+            
+            // Make it grey
+            cell.lblTask.textColor = UIColor.lightGray
         }
         
         return cell

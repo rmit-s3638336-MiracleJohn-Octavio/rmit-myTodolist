@@ -29,10 +29,12 @@ struct gstruTask {
 
 // Enumeration
 enum genmDateFormat: String {
+    case WekDayMonYrsHrsMinSec
     case WekDayMonYrsHrsMin
     case WekDayMonHrsMin
     case MonDayYrs
     case HrsMin
+    case HrsMinSec
 }
 enum genmOperation: Int {
     case Add = 1
@@ -88,7 +90,7 @@ class MyGlobals {
         return dteDate
     }
     
-    func mDateToDate(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMin) -> Date {
+    func mDateToDate(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMinSec) -> Date {
         var dateFormat: String = ""
         let clsDateFormatter = DateFormatter()
         
@@ -102,6 +104,8 @@ class MyGlobals {
     func mGetDateFormat(_ enmDateFormat: genmDateFormat) -> String {
         var strRetDateFormat: String = ""
         switch enmDateFormat {
+        case .WekDayMonYrsHrsMinSec:
+            strRetDateFormat = "EEE, dd MMM yyyy, hh:mm:ss a"
         case .WekDayMonYrsHrsMin:
             strRetDateFormat = "EEE, dd MMM yyyy, hh:mm a"
         case .WekDayMonHrsMin:
@@ -110,6 +114,8 @@ class MyGlobals {
             strRetDateFormat = "MMM dd yyyy"
         case .HrsMin:
             strRetDateFormat = "hh:mm a"
+        case .HrsMinSec:
+            strRetDateFormat = "hh:mm:ss a"
         }
         return strRetDateFormat
     }
@@ -118,6 +124,15 @@ class MyGlobals {
         var arrReturnValue = [String]()
         arrReturnValue = (strDelimited).components(separatedBy: separatingChar)
         return arrReturnValue
+    }
+    
+    func mSecondsToHoursMinutesSeconds(_ seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    func mSecondsToHoursMinutesSeconds(_ seconds:Int) -> String {
+        let (h, m, s) = mSecondsToHoursMinutesSeconds(seconds)
+        return ("\(h)h \(m)m \(s)s")
     }
 }
 

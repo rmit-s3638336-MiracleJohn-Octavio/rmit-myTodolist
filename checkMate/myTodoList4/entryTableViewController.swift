@@ -50,15 +50,15 @@ class entryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        displayDataEntry()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        displayDataEntry() // Display Data Entry
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        displayDataEntry() // Display Data Entry
+        // Display Data Entry -- put it here to avoid delay in 
+        // displaying the data
+        displayDataEntry()
     }
     
     func displayDataEntry() {

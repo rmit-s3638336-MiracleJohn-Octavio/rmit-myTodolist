@@ -240,6 +240,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="btnCheckTask" destination="5Or-Vf-OuX" id="Syt-qt-hTW"/>
+                                    <outlet property="imgClockIcon" destination="3W2-Ex-bZt" id="fO6-Rw-LcV"/>
                                     <outlet property="lblDateTime" destination="zZR-im-pPs" id="Idb-qU-pyt"/>
                                     <outlet property="lblTask" destination="S2F-5b-sKX" id="VtJ-Xj-ONe"/>
                                     <segue destination="F0M-rO-YvP" kind="show" identifier="segueEditViewController" id="AWs-8X-Zd3"/>
@@ -406,7 +407,7 @@
                                             <frame key="frameInset" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="EQ7-KL-FVr">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQ7-KL-FVr">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="320" id="Ff1-YG-p1e"/>
                                                         <constraint firstAttribute="height" constant="151" id="cLL-x4-DVU"/>
