@@ -1,8 +1,8 @@
 //
-//  galleryCollectionViewController.swift
+//  iconCollectionViewController.swift
 //  checkMate
 //
-//  Created by Miracle John Octavio Jr on 15/08/2017.
+//  Created by Miracle John Octavio Jr on 21/08/2017.
 //  Copyright © 2017 mySoftVersion. All rights reserved.
 //
 
@@ -10,20 +10,26 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class galleryCollectionViewController: UICollectionViewController {
-    
-//    let array: [String]
+class iconCollectionViewController: UICollectionViewController {
 
+    var arrIcons = MyGlobals.shared.mStringToArray("01,02,03,04,05,06,01,02,03,04,05,06,01,02,03,04,05,06,01,02,03,04,05,06")
+    
+    @IBOutlet var myCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        // This will calcualte the layout of the collection view
+        let itemSize = UIScreen.main.bounds.width/4 - 4
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsetsMake(20, 0, 10, 0)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 4
+        myCollectionView.collectionViewLayout = layout
+        
+        // Instantiate Array
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,23 +47,24 @@ class galleryCollectionViewController: UICollectionViewController {
     }
     */
 
-    // MARK: UICollectionViewDataSource
+// MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return arrIcons.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+// MARK: - Data Load
     
-        // Configure the cell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! iconCollectionViewCell
+        
+        cell.imgIcon.image = UIImage(named: arrIcons[indexPath.row] + ".png")
     
         return cell
     }
