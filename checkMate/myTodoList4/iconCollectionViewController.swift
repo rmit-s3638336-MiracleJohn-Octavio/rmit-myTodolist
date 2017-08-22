@@ -11,6 +11,11 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class iconCollectionViewController: UICollectionViewController {
+    
+// MARK: - Variables
+    
+    // This will recieve the index from Root
+    var intIndex =  Int()
 
 // MARK: - Controls
     
@@ -66,6 +71,8 @@ class iconCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
+        
+        MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrIconFile[indexPath.row]
         
         // Back to Root View Controller
         // mjNotes: The "_ =" prevents the compiler from displaying a warning message

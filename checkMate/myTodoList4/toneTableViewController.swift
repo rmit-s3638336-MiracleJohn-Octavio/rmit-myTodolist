@@ -10,6 +10,8 @@ import UIKit
 
 class toneTableViewController: UITableViewController {
     
+// MARK: - Variables
+    
     // This will recieve the index from Root
     var intIndex =  Int()
 

@@ -49,50 +49,82 @@ class entryTableViewController: UITableViewController {
     // This will recieve the index from Root
     var intIndex =  Int()
     
+    // Field Variables
+    var strTitle = String()
+    var strTask = String()
+    var dteDate = Date()
+    var blnAlarmMessageOn = Bool()
+//    var strToneName = String() // Use the lookup instead
+//    var strIconFile = String() // Use the lookup instead
+
+    
 // MARK: - Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Make the UIImage for Icon Circle
-        imgIcon.layer.borderWidth = 2
-        imgIcon.layer.masksToBounds = false
-        imgIcon.layer.borderColor = UIColor.gray.cgColor
-        imgIcon.layer.cornerRadius = 25
-        imgIcon.clipsToBounds = true
+        
+        // Initialize
+        initVariables()
+        
+        // Set focus
+        txtTask.becomeFirstResponder()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Display Data Entry -- put it here to avoid delay in 
+        // Display Data Entry -- put it here to avoid delay in
+        
         // displaying the data
         displayDataEntry()
     }
     
-    func displayDataEntry() {
+    func initVariables() {
+        
+        // Fill up the Lookup
+        MyGlobals.shared.arrTask_Lookup.ToneId = 0
+        
+        
         switch enmOperation {
         case genmOperation.Add:
-            navItem.title = "Add Task"
-            
-            txtTask.text = ""
-            dtpTask.date = Date()
-            swtIsAlarmMessageOn.setOn(true, animated: true)
-            lblToneName.text = "(" + MyGlobals.shared.arrTone[0] + ")"
-            
-            // Set focus
-            txtTask.becomeFirstResponder()
+            title = "Add Task"
+            strTask = ""
+            dteDate = Date()
+            blnAlarmMessageOn = true
+            MyGlobals.shared.arrTask_Lookup.IconFile = ""
         case genmOperation.Edit:
-            navItem.title = "Edit Task"
-            
-            txtTask.text = MyGlobals.shared.arrTask[intIndex].Task
-            dtpTask.date  = MyGlobals.shared.arrTask[intIndex].DateTime
-            swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn == 1, animated: true)
-            lblToneName.text = "(" + MyGlobals.shared.arrTone[MyGlobals.shared.arrTask[intIndex].ToneId] + ")"
+            strTitle = "Edit Task"
+            strTask = MyGlobals.shared.arrTask[intIndex].Task
+            dteDate = MyGlobals.shared.arrTask[intIndex].DateTime
+            blnAlarmMessageOn = MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn == 1
+            MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[intIndex].IconFile
         }
+    }
+    
+    func displayDataEntry() {
         
+        // Values taken from the Lookup
+        
+        // Layout the values
+        navItem.title = strTitle
+        txtTask.text = strTask
+        dtpTask.date  = dteDate
+        swtIsAlarmMessageOn.setOn(blnAlarmMessageOn, animated: true)
+//        lblToneName.text = MyGlobals.shared.arrTask_Lookup.ToneId
+        if (MyGlobals.shared.arrTask_Lookup.IconFile != "") {
+            imgIcon.image = UIImage(named: MyGlobals.shared.arrTask_Lookup.IconFile)
+        }
+        // Make the UIImage for Icon Circle
+        imgIcon.layer.borderWidth = 2
+        imgIcon.layer.masksToBounds = false
+        imgIcon.layer.borderColor = UIColor.gray.cgColor
+        imgIcon.layer.cornerRadius = 25
+        imgIcon.clipsToBounds = true
+        
+        // Update the DateTime object
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
-        
     }
 
     
@@ -110,6 +142,7 @@ class entryTableViewController: UITableViewController {
             } else {
                 lStruTask.IsAlarmMessageOn = 0
             }
+            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
             
             // Not Similar Value/Operation
             switch enmOperation {

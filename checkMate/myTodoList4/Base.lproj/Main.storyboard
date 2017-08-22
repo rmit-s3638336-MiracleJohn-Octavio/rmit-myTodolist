@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2Dr-E3-K5T"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KBK-5q-IkG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viX-GZ-gni">
@@ -183,7 +183,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="Kt9-B6-JZW" kind="relationship" relationship="viewControllers" id="Jze-k8-ir4"/>
-                        <segue destination="kQh-jg-s4e" kind="relationship" relationship="viewControllers" id="R5T-xN-tBo"/>
                         <segue destination="IzT-Yk-3zu" kind="relationship" relationship="viewControllers" id="BUo-Lj-air"/>
                     </connections>
                 </tabBarController>
@@ -695,11 +694,11 @@
             </objects>
             <point key="canvasLocation" x="3541.5999999999999" y="-849.62518740629696"/>
         </scene>
-        <!--Home-->
+        <!--Reminder-->
         <scene sceneID="sUa-4n-sH9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kt9-B6-JZW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="9aU-dn-LOZ">
+                    <tabBarItem key="tabBarItem" title="Reminder" image="reminder" id="9aU-dn-LOZ">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-1"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -720,11 +719,11 @@
     <resources>
         <image name="Check" width="56" height="56"/>
         <image name="Clock_Small" width="22" height="22"/>
-        <image name="Home" width="26" height="26"/>
         <image name="Me" width="12" height="30"/>
         <image name="Settings" width="26" height="26"/>
         <image name="UnCheck_Small" width="40" height="40"/>
         <image name="emptyIcon.png" width="195" height="195"/>
+        <image name="reminder" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bA5-Jm-oSa"/>

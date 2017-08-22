@@ -48,6 +48,10 @@
 		20E8AD6E1F4BC8BD00DF5B38 /* 23.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD6B1F4BC8BD00DF5B38 /* 23.png */; };
 		20E8AD6F1F4BC8BD00DF5B38 /* 24.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD6C1F4BC8BD00DF5B38 /* 24.png */; };
 		20E8AD711F4BC97600DF5B38 /* 08.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD701F4BC97600DF5B38 /* 08.png */; };
+		20E8AD751F4C2CA900DF5B38 /* 25.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD721F4C2CA900DF5B38 /* 25.png */; };
+		20E8AD761F4C2CA900DF5B38 /* 26.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD731F4C2CA900DF5B38 /* 26.png */; };
+		20E8AD771F4C2CA900DF5B38 /* 27.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD741F4C2CA900DF5B38 /* 27.png */; };
+		20E8AD791F4C3B8300DF5B38 /* testTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8AD781F4C3B8300DF5B38 /* testTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +98,10 @@
 		20E8AD6B1F4BC8BD00DF5B38 /* 23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 23.png; sourceTree = "<group>"; };
 		20E8AD6C1F4BC8BD00DF5B38 /* 24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 24.png; sourceTree = "<group>"; };
 		20E8AD701F4BC97600DF5B38 /* 08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 08.png; sourceTree = "<group>"; };
+		20E8AD721F4C2CA900DF5B38 /* 25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 25.png; sourceTree = "<group>"; };
+		20E8AD731F4C2CA900DF5B38 /* 26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 26.png; sourceTree = "<group>"; };
+		20E8AD741F4C2CA900DF5B38 /* 27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 27.png; sourceTree = "<group>"; };
+		20E8AD781F4C3B8300DF5B38 /* testTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				206D8CC11F36BB630052AA71 /* ViewController.swift */,
+				20E8AD781F4C3B8300DF5B38 /* testTableViewController.swift */,
 				20E8AD311F497AF900DF5B38 /* taskTableViewController.swift */,
 				20E8AD2D1F49204C00DF5B38 /* taskTableViewCell.swift */,
 				20BE8F2A1F3C81B9009968B7 /* toneTableViewController.swift */,
@@ -201,6 +210,9 @@
 				20E8AD6A1F4BC8BD00DF5B38 /* 22.png */,
 				20E8AD6B1F4BC8BD00DF5B38 /* 23.png */,
 				20E8AD6C1F4BC8BD00DF5B38 /* 24.png */,
+				20E8AD721F4C2CA900DF5B38 /* 25.png */,
+				20E8AD731F4C2CA900DF5B38 /* 26.png */,
+				20E8AD741F4C2CA900DF5B38 /* 27.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -266,6 +278,7 @@
 			files = (
 				20E8AD691F4B253400DF5B38 /* 21.png in Resources */,
 				20E8AD591F4ABCF900DF5B38 /* 16.png in Resources */,
+				20E8AD771F4C2CA900DF5B38 /* 27.png in Resources */,
 				20E8AD521F4ABCF900DF5B38 /* 09.png in Resources */,
 				20E8AD711F4BC97600DF5B38 /* 08.png in Resources */,
 				20E8AD421F4AB7D800DF5B38 /* 03.png in Resources */,
@@ -274,6 +287,7 @@
 				20E8AD681F4B253400DF5B38 /* 20.png in Resources */,
 				206D8CC71F36BB630052AA71 /* Assets.xcassets in Resources */,
 				2065BDE81F376DAD00D4DF95 /* Info.rtf in Resources */,
+				20E8AD751F4C2CA900DF5B38 /* 25.png in Resources */,
 				20E8AD501F4ABCF900DF5B38 /* 07.png in Resources */,
 				20E8AD5F1F4B229500DF5B38 /* emptyIcon.png in Resources */,
 				20E8AD531F4ABCF900DF5B38 /* 10.png in Resources */,
@@ -292,6 +306,7 @@
 				20E8AD431F4AB7D800DF5B38 /* 04.png in Resources */,
 				206D8CC51F36BB630052AA71 /* Main.storyboard in Resources */,
 				20E8AD6E1F4BC8BD00DF5B38 /* 23.png in Resources */,
+				20E8AD761F4C2CA900DF5B38 /* 26.png in Resources */,
 				20E8AD411F4AB7D800DF5B38 /* 02.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				206D8CC21F36BB630052AA71 /* ViewController.swift in Sources */,
+				20E8AD791F4C3B8300DF5B38 /* testTableViewController.swift in Sources */,
 				209BFA7A1F3C269F006285F1 /* chkButton.swift in Sources */,
 				20E8AD301F49269800DF5B38 /* toneTableViewCell.swift in Sources */,
 				20E8AD2E1F49204C00DF5B38 /* taskTableViewCell.swift in Sources */,

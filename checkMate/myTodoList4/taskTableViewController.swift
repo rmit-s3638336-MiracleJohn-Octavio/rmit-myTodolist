@@ -122,6 +122,12 @@ class taskTableViewController: UITableViewController {
             cell.lblTask.textColor = UIColor.lightGray
         }
         
+        // Icon
+        if (MyGlobals.shared.arrTask[indexPath.row].IconFile != "") {
+            cell.imgIcon.image = UIImage(named: MyGlobals.shared.arrTask[indexPath.row].IconFile)
+        } else {
+            cell.imgIcon.image = UIImage(named: "emptyIcon.png")
+        }
         // Make the UIImage for Icon Circle
         cell.imgIcon.layer.borderWidth = 2
         cell.imgIcon.layer.masksToBounds = false
