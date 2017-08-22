@@ -12,29 +12,22 @@ private let reuseIdentifier = "Cell"
 
 class iconCollectionViewController: UICollectionViewController {
 
-    var arrIcons = MyGlobals.shared.mStringToArray("01,02,03,04,05,06,01,02,03,04,05,06,01,02,03,04,05,06,01,02,03,04,05,06")
+// MARK: - Controls
     
     @IBOutlet var myCollectionView: UICollectionView!
+    
+// MARK: - Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // This will calcualte the layout of the collection view
-        let itemSize = UIScreen.main.bounds.width/4 - 4
+        let itemSize = UIScreen.main.bounds.width/5 - 1
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsetsMake(20, 0, 10, 0)
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        layout.minimumInteritemSpacing = 4
-        layout.minimumLineSpacing = 4
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
         myCollectionView.collectionViewLayout = layout
-        
-        // Instantiate Array
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     /*
@@ -56,7 +49,7 @@ class iconCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return arrIcons.count
+        return MyGlobals.shared.arrIconFile.count
     }
 
 // MARK: - Data Load
@@ -64,12 +57,23 @@ class iconCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! iconCollectionViewCell
         
-        cell.imgIcon.image = UIImage(named: arrIcons[indexPath.row] + ".png")
+        cell.imgIcon.image = UIImage(named: MyGlobals.shared.arrIconFile[indexPath.row])
     
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+// MARK: - Events
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+        
+        // Back to Root View Controller
+        // mjNotes: The "_ =" prevents the compiler from displaying a warning message
+        //        _ = self.navigationController?.popToRootViewController(animated: true) // Root
+        _ = self.navigationController?.popViewController(animated: true)         // Previous
+    }
+    
+// MARK: UICollectionViewDelegate
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -77,6 +81,7 @@ class iconCollectionViewController: UICollectionViewController {
         return true
     }
     */
+    
 
     /*
     // Uncomment this method to specify if the specified item should be selected

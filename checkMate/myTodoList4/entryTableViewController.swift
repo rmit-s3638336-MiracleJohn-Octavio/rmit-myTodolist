@@ -33,6 +33,9 @@ class entryTableViewController: UITableViewController {
     // Tone
     @IBOutlet weak var lblToneName: UILabel!
     
+    // Icon
+    @IBOutlet weak var imgIcon: UIImageView!
+    
     
 // MARK: - Variables
     
@@ -50,6 +53,12 @@ class entryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Make the UIImage for Icon Circle
+        imgIcon.layer.borderWidth = 2
+        imgIcon.layer.masksToBounds = false
+        imgIcon.layer.borderColor = UIColor.gray.cgColor
+        imgIcon.layer.cornerRadius = 25
+        imgIcon.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -134,9 +143,8 @@ class entryTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // var selectedIndexPath: IndexPath = self.tableView.indexPathForSelectedRow!
-        let tvc: toneTableViewController = segue.destination as! toneTableViewController
-        
         if (segue.identifier == "segueToneView") {
+            let tvc: toneTableViewController = segue.destination as! toneTableViewController
             tvc.intIndex = intIndex
         }
     }

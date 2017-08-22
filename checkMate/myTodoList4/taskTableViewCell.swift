@@ -15,6 +15,7 @@ class taskTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTask: UILabel!
     @IBOutlet weak var lblDateTime: UILabel!
     @IBOutlet weak var imgClockIcon: UIImageView!
+    @IBOutlet weak var imgIcon: UIImageView!
     
     // MARK: - Defaults
     

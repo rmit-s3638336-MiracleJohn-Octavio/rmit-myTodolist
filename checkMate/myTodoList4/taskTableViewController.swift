@@ -16,29 +16,11 @@ class taskTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Init Globals
-        MyGlobals.shared.arrTone = MyGlobals.shared.mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
-        
-        // mjNotes: Prepare Initial Data            .
-        var arrTaskList = MyGlobals.shared.mStringToArray("First,Second Second Second Second Second Second Second Second Second Second Second Second ,Third")
-        var arrTaskCompleted = [1, 0, 1]
-        var arrTaskDateTime = MyGlobals.shared.mStringToArray(MyGlobals.shared.mDateToString(Date()) + "|" + MyGlobals.shared.mDateToString(Date()) + "|" + MyGlobals.shared.mDateToString(Date()),"|")
-        var arrIsAlarmMessageOn = [1, 1, 0]
-        var arrToneId = [1, 1, 4]
-        
-        for i in 0 ..< arrTaskList.count {
-            var lStruTask = gstruTask()
-            lStruTask.Task = arrTaskList[i]
-            lStruTask.IsTaskComplete = arrTaskCompleted[i]
-            lStruTask.DateTime = MyGlobals.shared.mStringToDate(arrTaskDateTime[i])
-            lStruTask.IsAlarmMessageOn = arrIsAlarmMessageOn[i]
-            lStruTask.ToneId = arrToneId[i]
-            MyGlobals.shared.arrTask.append(lStruTask)
-        }
+        MyGlobals.shared.mInitialize()        
         
         // Create Timer
         let tmrReloadData = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
         tmrReloadData.fire()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -139,6 +121,13 @@ class taskTableViewController: UITableViewController {
             // Make it grey
             cell.lblTask.textColor = UIColor.lightGray
         }
+        
+        // Make the UIImage for Icon Circle
+        cell.imgIcon.layer.borderWidth = 2
+        cell.imgIcon.layer.masksToBounds = false
+        cell.imgIcon.layer.borderColor = UIColor.gray.cgColor
+        cell.imgIcon.layer.cornerRadius = 25
+        cell.imgIcon.clipsToBounds = true
         
         return cell
     }

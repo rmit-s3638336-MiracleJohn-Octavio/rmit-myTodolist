@@ -25,6 +25,7 @@ struct gstruTask {
     var DateTime = Date()
     var IsAlarmMessageOn = Int()
     var ToneId = Int()
+    var IconId = Int()
 }
 
 // Enumeration
@@ -53,9 +54,10 @@ class MyGlobals {
     // Global Shared
     static let shared = MyGlobals()
     
-    // Array
+    // Arrays
     var arrTask = [gstruTask]()
     var arrTone = [String]()
+    var arrIconFile = [String]()    // This will hold the Icon File (e.g. "01.png")
     
     // Images
     let imgChecked = UIImage(named: "Check.png")
@@ -66,6 +68,38 @@ class MyGlobals {
     
 // MARK: - Methods
     
+    // Initialize - This is called only once
+    func mInitialize() {
+        
+        // Tone
+        arrTone = mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
+        
+        // Icon
+        for i in 1 ..< 25 {
+            if (i < 10) {
+                arrIconFile.append("0" + String(i) + ".png")
+            } else {
+                arrIconFile.append(String(i) + ".png")
+            }
+        }
+        
+        // Dummy Data            .
+        var arrTaskList = mStringToArray("First,Second Second Second Second Second Second Second Second Second Second Second Second ,Third")
+        var arrTaskCompleted = [1, 0, 1]
+        var arrTaskDateTime = mStringToArray(mDateToString(Date()) + "|" + mDateToString(Date()) + "|" + mDateToString(Date()),"|")
+        var arrIsAlarmMessageOn = [1, 1, 0]
+        var arrToneId = [1, 1, 4]
+        for i in 0 ..< arrTaskList.count {
+            var lStruTask = gstruTask()
+            lStruTask.Task = arrTaskList[i]
+            lStruTask.IsTaskComplete = arrTaskCompleted[i]
+            lStruTask.DateTime = mStringToDate(arrTaskDateTime[i])
+            lStruTask.IsAlarmMessageOn = arrIsAlarmMessageOn[i]
+            lStruTask.ToneId = arrToneId[i]
+            MyGlobals.shared.arrTask.append(lStruTask)
+        }
+
+    }
     
     // Conversion
     func mDateToString(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMin) -> String {
