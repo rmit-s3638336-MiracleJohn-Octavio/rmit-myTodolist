@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2Dr-E3-K5T"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KBK-5q-IkG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viX-GZ-gni">
@@ -78,12 +78,12 @@
             </objects>
             <point key="canvasLocation" x="114" y="107"/>
         </scene>
-        <!--Gallery Collection View Controller-->
+        <!--Select Icon-->
         <scene sceneID="oyl-vw-IJS">
             <objects>
-                <collectionViewController id="oTk-Hs-CIM" customClass="galleryCollectionViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TXh-uo-ih7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                <collectionViewController id="oTk-Hs-CIM" customClass="iconCollectionViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="TXh-uo-ih7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oDt-JK-KdX">
@@ -93,13 +93,27 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ksz-Eq-Z1a">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="myCell" id="Ksz-Eq-Z1a" customClass="iconCollectionViewCell" customModule="checkMate" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="SzG-ST-7fR"/>
+                                    </subviews>
                                 </view>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="SzG-ST-7fR" secondAttribute="trailing" id="V94-FL-l2o"/>
+                                    <constraint firstItem="SzG-ST-7fR" firstAttribute="top" secondItem="Ksz-Eq-Z1a" secondAttribute="topMargin" id="cKv-IR-vL7"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="SzG-ST-7fR" secondAttribute="bottom" id="cRd-X0-Xg8"/>
+                                    <constraint firstItem="SzG-ST-7fR" firstAttribute="leading" secondItem="Ksz-Eq-Z1a" secondAttribute="leadingMargin" id="nJW-qX-8Ld"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="100"/>
+                                <connections>
+                                    <outlet property="imgIcon" destination="SzG-ST-7fR" id="yrn-FF-sd7"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -108,10 +122,14 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" systemItem="downloads" id="zSW-jq-33H"/>
+                    <navigationItem key="navigationItem" title="Select Icon" id="0Ig-ms-HAz"/>
+                    <connections>
+                        <outlet property="myCollectionView" destination="TXh-uo-ih7" id="9ny-tJ-asf"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82f-0b-akJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="873" y="105"/>
+            <point key="canvasLocation" x="3495" y="-147"/>
         </scene>
         <!--Settings-->
         <scene sceneID="5Rz-b6-nb3">
@@ -122,7 +140,7 @@
                         <viewControllerLayoutGuide type="bottom" id="tiJ-XE-Nno"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zhn-v0-4Tn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iW1-uE-tHv">
@@ -165,16 +183,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="Kt9-B6-JZW" kind="relationship" relationship="viewControllers" id="Jze-k8-ir4"/>
-                        <segue destination="kQh-jg-s4e" kind="relationship" relationship="viewControllers" id="R5T-xN-tBo"/>
-                        <segue destination="IzT-Yk-3zu" kind="relationship" relationship="viewControllers" id="BUo-Lj-air"/>
-                        <segue destination="oTk-Hs-CIM" kind="relationship" relationship="viewControllers" id="se7-Up-naZ"/>
+                        <segue destination="aMf-kV-mZQ" kind="relationship" relationship="viewControllers" id="f2f-fO-emv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfN-eM-4rr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="-690.40479760119945"/>
+            <point key="canvasLocation" x="39" y="-732"/>
         </scene>
-        <!--Task List-->
+        <!--Reminders-->
         <scene sceneID="Fg2-Fr-eGx">
             <objects>
                 <tableViewController id="Dve-2F-lbL" customClass="taskTableViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
@@ -183,63 +199,71 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskTableViewCell" rowHeight="62" id="VoW-Um-zcc" customClass="taskTableViewCell" customModule="checkMate" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="taskTableViewCell" rowHeight="62" id="VoW-Um-zcc" customClass="taskTableViewCell" customModule="checkMate" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="VoW-Um-zcc" id="wxl-GA-e3V">
-                                    <frame key="frameInset" width="342" height="61"/>
+                                    <frame key="frameInset" width="375" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Or-Vf-OuX">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="Dtm-0e-eV6"/>
-                                                <constraint firstAttribute="width" constant="30" id="zVs-2q-E0i"/>
+                                                <constraint firstAttribute="height" constant="30" id="H9V-Gf-CZp"/>
+                                                <constraint firstAttribute="width" constant="30" id="RyJ-TT-W6u"/>
                                             </constraints>
                                             <state key="normal" title="Button" image="Check"/>
                                             <connections>
                                                 <action selector="btnCheckTask_Tapped:" destination="VoW-Um-zcc" eventType="touchUpInside" id="vBX-zZ-gWE"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="aAP-Fk-jjy">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="7ov-da-dBu"/>
+                                                <constraint firstAttribute="height" constant="50" id="MGG-7e-IKN"/>
+                                            </constraints>
+                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clock_Small" translatesAutoresizingMaskIntoConstraints="NO" id="3W2-Ex-bZt">
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="J3y-fS-nAP"/>
-                                                <constraint firstAttribute="width" constant="15" id="vsC-fF-kGf"/>
+                                                <constraint firstAttribute="width" constant="15" id="88d-Bs-ilO"/>
+                                                <constraint firstAttribute="height" constant="15" id="pl3-Rc-gEm"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to School" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2F-5b-sKX">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="288" id="Ji0-FM-Hyf"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in 5 minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZR-im-pPs">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="ZzD-sz-gfk"/>
+                                                <constraint firstAttribute="height" constant="21" id="HQc-gB-ezV"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to School" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2F-5b-sKX">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="251" id="Ggh-us-GZZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="zZR-im-pPs" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" id="0qs-nb-fqW"/>
-                                        <constraint firstItem="3W2-Ex-bZt" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" constant="3" id="4cg-uG-ZM1"/>
-                                        <constraint firstItem="S2F-5b-sKX" firstAttribute="leading" secondItem="wxl-GA-e3V" secondAttribute="leadingMargin" constant="38" id="DQN-xm-yEJ"/>
-                                        <constraint firstItem="S2F-5b-sKX" firstAttribute="trailing" secondItem="wxl-GA-e3V" secondAttribute="trailingMargin" id="F61-jF-wBF"/>
-                                        <constraint firstItem="S2F-5b-sKX" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" constant="23" id="HqY-lV-J0S"/>
-                                        <constraint firstItem="zZR-im-pPs" firstAttribute="leading" secondItem="wxl-GA-e3V" secondAttribute="leadingMargin" constant="56" id="KJR-j0-bM9"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="S2F-5b-sKX" secondAttribute="bottom" constant="2.5" id="MSs-F0-Rwn"/>
-                                        <constraint firstItem="5Or-Vf-OuX" firstAttribute="leading" secondItem="wxl-GA-e3V" secondAttribute="leadingMargin" id="Og6-2k-024"/>
-                                        <constraint firstItem="zZR-im-pPs" firstAttribute="trailing" secondItem="wxl-GA-e3V" secondAttribute="trailingMargin" id="Vn7-b1-F5m"/>
-                                        <constraint firstItem="5Or-Vf-OuX" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" constant="8" id="bsh-bi-JwM"/>
-                                        <constraint firstItem="3W2-Ex-bZt" firstAttribute="leading" secondItem="5Or-Vf-OuX" secondAttribute="trailing" constant="8" id="vT2-DO-apX"/>
+                                        <constraint firstItem="zZR-im-pPs" firstAttribute="leading" secondItem="wxl-GA-e3V" secondAttribute="leadingMargin" constant="75" id="1q4-wy-kBx"/>
+                                        <constraint firstItem="5Or-Vf-OuX" firstAttribute="trailing" secondItem="wxl-GA-e3V" secondAttribute="trailingMargin" id="2JH-dH-ZOn"/>
+                                        <constraint firstItem="S2F-5b-sKX" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="top" constant="31" id="8RF-pY-NrL"/>
+                                        <constraint firstItem="S2F-5b-sKX" firstAttribute="leading" secondItem="aAP-Fk-jjy" secondAttribute="trailing" constant="8" id="InM-Oq-xJY"/>
+                                        <constraint firstItem="3W2-Ex-bZt" firstAttribute="leading" secondItem="wxl-GA-e3V" secondAttribute="leadingMargin" constant="58" id="LOV-QT-4Wu"/>
+                                        <constraint firstItem="aAP-Fk-jjy" firstAttribute="leading" secondItem="wxl-GA-e3V" secondAttribute="leading" constant="8" id="VEA-Ri-KhW"/>
+                                        <constraint firstItem="5Or-Vf-OuX" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" constant="7" id="ao4-eZ-rBb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="S2F-5b-sKX" secondAttribute="bottom" constant="2" id="bNe-O7-Z03"/>
+                                        <constraint firstItem="3W2-Ex-bZt" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" constant="3" id="cgV-aI-xFa"/>
+                                        <constraint firstItem="aAP-Fk-jjy" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="top" constant="5" id="qJJ-9h-f8J"/>
+                                        <constraint firstItem="zZR-im-pPs" firstAttribute="top" secondItem="wxl-GA-e3V" secondAttribute="topMargin" id="zQq-H6-si5"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="btnCheckTask" destination="5Or-Vf-OuX" id="Syt-qt-hTW"/>
+                                    <outlet property="imgClockIcon" destination="3W2-Ex-bZt" id="fO6-Rw-LcV"/>
+                                    <outlet property="imgIcon" destination="aAP-Fk-jjy" id="DW2-KI-KpQ"/>
                                     <outlet property="lblDateTime" destination="zZR-im-pPs" id="Idb-qU-pyt"/>
                                     <outlet property="lblTask" destination="S2F-5b-sKX" id="VtJ-Xj-ONe"/>
                                     <segue destination="F0M-rO-YvP" kind="show" identifier="segueEditViewController" id="AWs-8X-Zd3"/>
@@ -252,7 +276,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Task List" id="Mzb-v5-h51">
+                    <navigationItem key="navigationItem" title="Reminders" id="Mzb-v5-h51">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wmy-AP-zJR">
                             <connections>
                                 <segue destination="F0M-rO-YvP" kind="show" identifier="segueAddViewController" id="bA5-Jm-oSa"/>
@@ -406,7 +430,7 @@
                                             <frame key="frameInset" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="10" translatesAutoresizingMaskIntoConstraints="NO" id="EQ7-KL-FVr">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQ7-KL-FVr">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="320" id="Ff1-YG-p1e"/>
                                                         <constraint firstAttribute="height" constant="151" id="cLL-x4-DVU"/>
@@ -546,6 +570,40 @@
                                             <segue destination="64T-R0-7Qd" kind="show" identifier="segueToneView" id="UpD-D0-ZQ8"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="toneTableViewCell" rowHeight="60" id="kx3-MC-nka">
+                                        <rect key="frame" x="0.0" y="434" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kx3-MC-nka" id="ZOX-XE-jbn">
+                                            <frame key="frameInset" width="342" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nmm-gh-ryh">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="p4T-mA-XS6"/>
+                                                        <constraint firstAttribute="width" constant="50" id="rv7-xe-0Yq"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Icon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASE-ef-aua">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Oau-uR-r1i"/>
+                                                        <constraint firstAttribute="width" constant="50" id="ntQ-xT-723"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ASE-ef-aua" firstAttribute="centerY" secondItem="ZOX-XE-jbn" secondAttribute="centerY" id="3gh-xh-WfT"/>
+                                                <constraint firstItem="nmm-gh-ryh" firstAttribute="leading" secondItem="ZOX-XE-jbn" secondAttribute="leading" constant="8" id="N31-XM-LIR"/>
+                                                <constraint firstItem="nmm-gh-ryh" firstAttribute="centerY" secondItem="ZOX-XE-jbn" secondAttribute="centerY" id="ZcG-B7-4FD"/>
+                                                <constraint firstItem="ASE-ef-aua" firstAttribute="leading" secondItem="ZOX-XE-jbn" secondAttribute="leadingMargin" constant="56" id="i46-om-OLZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="oTk-Hs-CIM" kind="show" identifier="segueIconView" id="heL-j7-h7R"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -572,6 +630,7 @@
                         <outlet property="btnSet11am" destination="uqa-NP-HOl" id="4QX-aL-0DD"/>
                         <outlet property="btnSetToday" destination="gLj-ly-bQx" id="hbh-cL-pgo"/>
                         <outlet property="dtpTask" destination="EQ7-KL-FVr" id="gci-XM-QPZ"/>
+                        <outlet property="imgIcon" destination="nmm-gh-ryh" id="2gH-7l-KVp"/>
                         <outlet property="lblDateTimeSelected" destination="75a-HA-uom" id="bd9-XT-WHl"/>
                         <outlet property="lblToneName" destination="W7Q-bp-4jz" id="NS6-K2-SOk"/>
                         <outlet property="navItem" destination="DVx-QX-fsD" id="fck-Tl-EOP"/>
@@ -635,11 +694,11 @@
             </objects>
             <point key="canvasLocation" x="3541.5999999999999" y="-849.62518740629696"/>
         </scene>
-        <!--Home-->
+        <!--Reminder-->
         <scene sceneID="sUa-4n-sH9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kt9-B6-JZW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="9aU-dn-LOZ">
+                    <tabBarItem key="tabBarItem" title="Reminder" image="reminder" id="9aU-dn-LOZ">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-1"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -656,14 +715,126 @@
             </objects>
             <point key="canvasLocation" x="972" y="-731.78410794602701"/>
         </scene>
+        <!--FirstVC-->
+        <scene sceneID="S2h-uk-6zR">
+            <objects>
+                <viewController storyboardIdentifier="FirstVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ThP-xn-MiK" customClass="FirstVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="89I-OR-Y34"/>
+                        <viewControllerLayoutGuide type="bottom" id="5iS-qH-XWN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W3k-ID-cpF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obOne.png" translatesAutoresizingMaskIntoConstraints="NO" id="K5N-OV-EpJ">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="561" id="1L3-pb-lCi"/>
+                                    <constraint firstAttribute="width" constant="1074" id="4Dj-oV-9sg"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="K5N-OV-EpJ" firstAttribute="centerX" secondItem="W3k-ID-cpF" secondAttribute="centerX" id="i5c-I4-eR2"/>
+                            <constraint firstAttribute="bottom" secondItem="K5N-OV-EpJ" secondAttribute="bottom" constant="78" id="zZ6-Vj-O10"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXp-je-zY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3192.8000000000002" y="-760.56971514242889"/>
+        </scene>
+        <!--Reminders-->
+        <scene sceneID="Qjl-Ta-3ue">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="aMf-kV-mZQ" customClass="onboardPageViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="How to" image="Settings" id="hhg-vH-WF6"/>
+                    <navigationItem key="navigationItem" title="Reminders" id="y4A-pZ-Hne">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ySs-wf-EJT"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imgBackground" destination="uSA-pn-Zol" id="CMp-yK-n8K"/>
+                    </connections>
+                </pageViewController>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="background" image="bg.jpg" id="uSA-pn-Zol">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6aw-33-QCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2719" y="-1494"/>
+        </scene>
+        <!--SecondVC-->
+        <scene sceneID="75x-37-4iP">
+            <objects>
+                <viewController storyboardIdentifier="SecondVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ye3-2u-Pdr" customClass="SecondVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ucE-AE-beu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dgy-XX-1mx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Bk-8K-7Do">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obTwo.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMy-GG-VkA">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1074" id="HM8-EK-2vc"/>
+                                    <constraint firstAttribute="height" constant="561" id="ujd-N9-5f0"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="dMy-GG-VkA" secondAttribute="bottom" constant="78" id="KUS-lC-apI"/>
+                            <constraint firstItem="dMy-GG-VkA" firstAttribute="centerX" secondItem="0Bk-8K-7Do" secondAttribute="centerX" id="a9S-Wp-j33"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hee-hI-Wap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2567" y="-761"/>
+        </scene>
+        <!--ThirdVC-->
+        <scene sceneID="gJI-ae-IRQ">
+            <objects>
+                <viewController storyboardIdentifier="ThirdVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zie-ia-OkU" customClass="ThirdVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EiB-B0-lrR"/>
+                        <viewControllerLayoutGuide type="bottom" id="zPG-5l-P8q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DVr-W4-oEh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-kB-Ryn">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="561" id="MuX-wT-9nC"/>
+                                    <constraint firstAttribute="width" constant="1074" id="VOe-6T-g3q"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="uEm-kB-Ryn" firstAttribute="centerX" secondItem="DVr-W4-oEh" secondAttribute="centerX" id="4hZ-lz-1Kl"/>
+                            <constraint firstAttribute="bottom" secondItem="uEm-kB-Ryn" secondAttribute="bottom" constant="78" id="oKf-kh-mB3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gm6-9s-aPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1937" y="-761"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Check" width="56" height="56"/>
         <image name="Clock_Small" width="22" height="22"/>
-        <image name="Home" width="26" height="26"/>
         <image name="Me" width="12" height="30"/>
         <image name="Settings" width="26" height="26"/>
         <image name="UnCheck_Small" width="40" height="40"/>
+        <image name="bg.jpg" width="1920" height="1200"/>
+        <image name="emptyIcon.png" width="195" height="195"/>
+        <image name="obOne.png" width="991" height="1902"/>
+        <image name="obThree.png" width="991" height="1902"/>
+        <image name="obTwo.png" width="991" height="1902"/>
+        <image name="reminder" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bA5-Jm-oSa"/>

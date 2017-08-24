@@ -16,30 +16,24 @@ class taskTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Init Globals
-        MyGlobals.shared.arrTone = MyGlobals.shared.mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
+        MyGlobals.shared.mInitialize()        
         
-        // mjNotes: Prepare Initial Data            .
-        var arrTaskList = MyGlobals.shared.mStringToArray("First,Second Second Second Second Second Second Second Second Second Second Second Second ,Third")
-        var arrTaskCompleted = [1, 0, 1]
-        var arrTaskDateTime = MyGlobals.shared.mStringToArray(MyGlobals.shared.mDateToString(Date()) + "|" + MyGlobals.shared.mDateToString(Date()) + "|" + MyGlobals.shared.mDateToString(Date()),"|")
-        var arrIsAlarmMessageOn = [1, 1, 0]
-        var arrToneId = [1, 1, 4]
-        
-        for i in 0 ..< arrTaskList.count {
-            var lStruTask = gstruTask()
-            lStruTask.Task = arrTaskList[i]
-            lStruTask.IsTaskComplete = arrTaskCompleted[i]
-            lStruTask.DateTime = MyGlobals.shared.mStringToDate(arrTaskDateTime[i])
-            lStruTask.IsAlarmMessageOn = arrIsAlarmMessageOn[i]
-            lStruTask.ToneId = arrToneId[i]
-            MyGlobals.shared.arrTask.append(lStruTask)
-        }
+        // Create Timer
+        let tmrReloadData = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
+        tmrReloadData.fire()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         // Sort the Array by Date Descending
         MyGlobals.shared.arrTask.sort{ $1.DateTime > $0.DateTime}
+        
         // Reload Data
+        reloadData()
+        
+    }
+    
+    func reloadData() {
         self.tableView.reloadData()
     }
     
@@ -71,6 +65,8 @@ class taskTableViewController: UITableViewController {
         }
     }
     
+// MARK: - Data Load
+    
     // mjNotes: This will fill up the cells with rows found
     // Data Load
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,12 +82,15 @@ class taskTableViewController: UITableViewController {
         
         if (dteDateOnList_DateFormat == dteDateToday_DateFormat) {
             // Today
-            cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMin)
+            
+            let elapsed = Date().timeIntervalSince(dteDateOnList_TimeFormat)
             if (dteDateOnList_TimeFormat < dteDateToday_TimeFormat) {
                 // Past
+                cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMinSec)
                 cell.lblDateTime.textColor = UIColor.red
             } else {
                 // Future
+                cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutes(Int(elapsed) * -1) + ")"
                 cell.lblDateTime.textColor = UIColor.darkGray
             }
         } else {
@@ -108,9 +107,33 @@ class taskTableViewController: UITableViewController {
         
         if (MyGlobals.shared.arrTask[indexPath.row].IsTaskComplete == 0 ) {
             cell.btnCheckTask.setImage(MyGlobals.shared.imgUnChecked, for: .normal)
+            
+            // Make it black
+            cell.lblTask.textColor = UIColor.black
         } else {
             cell.btnCheckTask.setImage(MyGlobals.shared.imgChecked, for: .normal)
+            
+            // Strikethrough
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.lblTask.text!)
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            cell.lblTask.attributedText = attributeString
+            
+            // Make it grey
+            cell.lblTask.textColor = UIColor.lightGray
         }
+        
+        // Icon
+        if (MyGlobals.shared.arrTask[indexPath.row].IconFile != "") {
+            cell.imgIcon.image = UIImage(named: MyGlobals.shared.arrTask[indexPath.row].IconFile)
+        } else {
+            cell.imgIcon.image = UIImage(named: "emptyIcon.png")
+        }
+        // Make the UIImage for Icon Circle
+        cell.imgIcon.layer.borderWidth = 2
+        cell.imgIcon.layer.masksToBounds = false
+        cell.imgIcon.layer.borderColor = UIColor.gray.cgColor
+        cell.imgIcon.layer.cornerRadius = 25
+        cell.imgIcon.clipsToBounds = true
         
         return cell
     }

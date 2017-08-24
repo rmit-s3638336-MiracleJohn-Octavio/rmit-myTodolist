@@ -10,6 +10,8 @@ import UIKit
 
 class toneTableViewController: UITableViewController {
     
+// MARK: - Variables
+    
     // This will recieve the index from Root
     var intIndex =  Int()
 
@@ -78,7 +80,7 @@ class toneTableViewController: UITableViewController {
         let row = indexPath.row // mjNotes: Selected Row
         print("Row: \(row)")
         
-        MyGlobals.shared.arrTask[intIndex].ToneId = indexPath.row
+        MyGlobals.shared.arrTask_Lookup.ToneId = indexPath.row
         
         // Back to Root View Controller
         // mjNotes: The "_ =" prevents the compiler from displaying a warning message

@@ -25,14 +25,18 @@ struct gstruTask {
     var DateTime = Date()
     var IsAlarmMessageOn = Int()
     var ToneId = Int()
+    var IconFile = String()
 }
 
 // Enumeration
 enum genmDateFormat: String {
+    case WekDayMonYrsHrsMinSec
     case WekDayMonYrsHrsMin
     case WekDayMonHrsMin
+    case DayMonYrsHrsMin
     case MonDayYrs
     case HrsMin
+    case HrsMinSec
 }
 enum genmOperation: Int {
     case Add = 1
@@ -51,9 +55,13 @@ class MyGlobals {
     // Global Shared
     static let shared = MyGlobals()
     
-    // Array
+    // Arrays - Transaction
     var arrTask = [gstruTask]()
+    var arrTask_Lookup = gstruTask()
+    
+    // Arrays - Master
     var arrTone = [String]()
+    var arrIconFile = [String]()    // This will hold the Icon File (e.g. "01.png")
     
     // Images
     let imgChecked = UIImage(named: "Check.png")
@@ -64,6 +72,49 @@ class MyGlobals {
     
 // MARK: - Methods
     
+    // Initialize - This is called only once
+    func mInitialize() {
+        
+        // Tone
+        arrTone = mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
+        
+        // Icon File
+        for i in 1 ..< 28 {
+            if (i < 10) {
+                arrIconFile.append("0" + String(i) + ".png")
+            } else {
+                arrIconFile.append(String(i) + ".png")
+            }
+        }
+        
+        // Dummy Data            .
+        var arrTaskList = mStringToArray("Exercise,I will be going to the train station to catch up the train going to Melbourne Central,Study Swift")
+        var arrTaskCompleted = [1, 0, 0]
+        var arrTaskDateTime = mStringToArray(
+            mDateToString(mStringToDate("24 AUG 2017, 08:00 am",.DayMonYrsHrsMin)) + "|" +
+            mDateToString(mStringToDate("25 AUG 2017, 08:00 am",.DayMonYrsHrsMin)) + "|" +
+            mDateToString(mStringToDate("26 AUG 2017, 07:00 pm",.DayMonYrsHrsMin)),"|")
+        var arrIsAlarmMessageOn = [1, 1, 0]
+        var arrToneId = [1, 1, 4]
+        var arrIconFile_Dummy = mStringToArray("01.png,06.png,09.png")
+        for i in 0 ..< arrTaskList.count {
+            
+            // Create local strucuture
+            var lStruTask = gstruTask()
+            
+            // Pass the dummy values to respective elements of the Structure
+            lStruTask.Task = arrTaskList[i]
+            lStruTask.IsTaskComplete = arrTaskCompleted[i]
+            lStruTask.DateTime = mStringToDate(arrTaskDateTime[i])
+            lStruTask.IsAlarmMessageOn = arrIsAlarmMessageOn[i]
+            lStruTask.ToneId = arrToneId[i]
+            lStruTask.IconFile = arrIconFile_Dummy[i]
+            
+            // Add the structure to Array
+            MyGlobals.shared.arrTask.append(lStruTask)
+        }
+
+    }
     
     // Conversion
     func mDateToString(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMin) -> String {
@@ -88,7 +139,7 @@ class MyGlobals {
         return dteDate
     }
     
-    func mDateToDate(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMin) -> Date {
+    func mDateToDate(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMinSec) -> Date {
         var dateFormat: String = ""
         let clsDateFormatter = DateFormatter()
         
@@ -102,14 +153,20 @@ class MyGlobals {
     func mGetDateFormat(_ enmDateFormat: genmDateFormat) -> String {
         var strRetDateFormat: String = ""
         switch enmDateFormat {
+        case .WekDayMonYrsHrsMinSec:
+            strRetDateFormat = "EEE, dd MMM yyyy, hh:mm:ss a"
         case .WekDayMonYrsHrsMin:
             strRetDateFormat = "EEE, dd MMM yyyy, hh:mm a"
         case .WekDayMonHrsMin:
             strRetDateFormat = "EEE, dd MMM, hh:mm a"
+        case .DayMonYrsHrsMin:
+            strRetDateFormat = "dd MMM yyyy, hh:mm a"
         case .MonDayYrs:
             strRetDateFormat = "MMM dd yyyy"
         case .HrsMin:
             strRetDateFormat = "hh:mm a"
+        case .HrsMinSec:
+            strRetDateFormat = "hh:mm:ss a"
         }
         return strRetDateFormat
     }
@@ -118,6 +175,20 @@ class MyGlobals {
         var arrReturnValue = [String]()
         arrReturnValue = (strDelimited).components(separatedBy: separatingChar)
         return arrReturnValue
+    }
+    
+    func mSecondsToHoursMinutesSeconds(_ seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    func mSecondsToHoursMinutesSeconds(_ seconds:Int) -> String {
+        let (h, m, s) = mSecondsToHoursMinutesSeconds(seconds)
+        return ("\(h)h \(m)m \(s)s")
+    }
+    
+    func mSecondsToHoursMinutes(_ seconds:Int) -> String {
+        let (h, m, s) = mSecondsToHoursMinutesSeconds(seconds)
+        return ("\(h)h \(m)m")
     }
 }
 

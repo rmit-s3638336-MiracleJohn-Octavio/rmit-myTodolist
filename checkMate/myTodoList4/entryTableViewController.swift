@@ -33,6 +33,9 @@ class entryTableViewController: UITableViewController {
     // Tone
     @IBOutlet weak var lblToneName: UILabel!
     
+    // Icon
+    @IBOutlet weak var imgIcon: UIImageView!
+    
     
 // MARK: - Variables
     
@@ -46,44 +49,84 @@ class entryTableViewController: UITableViewController {
     // This will recieve the index from Root
     var intIndex =  Int()
     
+    // Field Variables
+    var strTitle = String()
+//    var strTask = String()            // Use the lookup instead
+//    var dteDate = Date()              // Use the lookup instead
+//    var blnAlarmMessageOn = Bool()    // Use the lookup instead
+//    var strToneName = String()        // Use the lookup instead
+//    var strIconFile = String()        // Use the lookup instead
+
+    
 // MARK: - Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        displayDataEntry()
+        
+        // Initialize
+        initVariables()
+        
+        // Set focus
+        txtTask.becomeFirstResponder()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        displayDataEntry() // Display Data Entry
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        displayDataEntry() // Display Data Entry
+        // Display Data Entry -- put it here to avoid delay in
+        
+        // displaying the data
+        displayDataEntry()
+    }
+    
+    func initVariables() {
+        
+        // Fill up the Lookup
+        MyGlobals.shared.arrTask_Lookup.ToneId = 0
+        
+        
+        switch enmOperation {
+        case genmOperation.Add:
+            title = "Add Task"
+            MyGlobals.shared.arrTask_Lookup.Task = ""
+            MyGlobals.shared.arrTask_Lookup.DateTime = Date()
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
+            MyGlobals.shared.arrTask_Lookup.ToneId = 0
+            MyGlobals.shared.arrTask_Lookup.IconFile = ""
+        case genmOperation.Edit:
+            strTitle = "Edit Task"
+            MyGlobals.shared.arrTask_Lookup.Task = MyGlobals.shared.arrTask[intIndex].Task
+            MyGlobals.shared.arrTask_Lookup.DateTime = MyGlobals.shared.arrTask[intIndex].DateTime
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn
+            MyGlobals.shared.arrTask_Lookup.ToneId = MyGlobals.shared.arrTask[intIndex].ToneId
+            MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[intIndex].IconFile
+        }
     }
     
     func displayDataEntry() {
-        switch enmOperation {
-        case genmOperation.Add:
-            navItem.title = "Add Task"
-            
-            txtTask.text = ""
-            dtpTask.date = Date()
-            swtIsAlarmMessageOn.setOn(true, animated: true)
-            lblToneName.text = "(" + MyGlobals.shared.arrTone[0] + ")"
-            
-            // Set focus
-            txtTask.becomeFirstResponder()
-        case genmOperation.Edit:
-            navItem.title = "Edit Task"
-            
-            txtTask.text = MyGlobals.shared.arrTask[intIndex].Task
-            dtpTask.date  = MyGlobals.shared.arrTask[intIndex].DateTime
-            swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn == 1, animated: true)
-            lblToneName.text = "(" + MyGlobals.shared.arrTone[MyGlobals.shared.arrTask[intIndex].ToneId] + ")"
+        
+        // Values taken from the Lookup
+        
+        // Layout the values
+        navItem.title = strTitle
+        txtTask.text = MyGlobals.shared.arrTask_Lookup.Task
+        dtpTask.date  = MyGlobals.shared.arrTask_Lookup.DateTime
+        swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn == 1, animated: true)
+        lblToneName.text = "(" + MyGlobals.shared.arrTone[MyGlobals.shared.arrTask_Lookup.ToneId] + ")"
+        if (MyGlobals.shared.arrTask_Lookup.IconFile != "") {
+            imgIcon.image = UIImage(named: MyGlobals.shared.arrTask_Lookup.IconFile)
         }
+        // Make the UIImage for Icon Circle
+        imgIcon.layer.borderWidth = 2
+        imgIcon.layer.masksToBounds = false
+        imgIcon.layer.borderColor = UIColor.gray.cgColor
+        imgIcon.layer.cornerRadius = 25
+        imgIcon.clipsToBounds = true
         
+        // Update the DateTime object
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
-        
     }
 
     
@@ -101,6 +144,8 @@ class entryTableViewController: UITableViewController {
             } else {
                 lStruTask.IsAlarmMessageOn = 0
             }
+            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
+            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
             
             // Not Similar Value/Operation
             switch enmOperation {
@@ -133,11 +178,24 @@ class entryTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // var selectedIndexPath: IndexPath = self.tableView.indexPathForSelectedRow!
-        let tvc: toneTableViewController = segue.destination as! toneTableViewController
+        
+        // Pass the current value to Global Lookup
+        MyGlobals.shared.arrTask_Lookup.Task = txtTask.text!
+        MyGlobals.shared.arrTask_Lookup.DateTime = dtpTask.date
+        if (swtIsAlarmMessageOn.isOn == true) {
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
+        } else {
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 0
+        }
+        if (MyGlobals.shared.arrTask_Lookup.IconFile != "") {
+            imgIcon.image = UIImage(named: MyGlobals.shared.arrTask_Lookup.IconFile)
+        }
         
         if (segue.identifier == "segueToneView") {
+            let tvc: toneTableViewController = segue.destination as! toneTableViewController
             tvc.intIndex = intIndex
+        } else if (segue.identifier == "segueIconView") {
+            
         }
     }
     
