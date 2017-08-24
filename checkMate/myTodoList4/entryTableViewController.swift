@@ -51,11 +51,11 @@ class entryTableViewController: UITableViewController {
     
     // Field Variables
     var strTitle = String()
-    var strTask = String()
-    var dteDate = Date()
-    var blnAlarmMessageOn = Bool()
-//    var strToneName = String() // Use the lookup instead
-//    var strIconFile = String() // Use the lookup instead
+//    var strTask = String()            // Use the lookup instead
+//    var dteDate = Date()              // Use the lookup instead
+//    var blnAlarmMessageOn = Bool()    // Use the lookup instead
+//    var strToneName = String()        // Use the lookup instead
+//    var strIconFile = String()        // Use the lookup instead
 
     
 // MARK: - Load
@@ -90,15 +90,17 @@ class entryTableViewController: UITableViewController {
         switch enmOperation {
         case genmOperation.Add:
             title = "Add Task"
-            strTask = ""
-            dteDate = Date()
-            blnAlarmMessageOn = true
+            MyGlobals.shared.arrTask_Lookup.Task = ""
+            MyGlobals.shared.arrTask_Lookup.DateTime = Date()
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
+            MyGlobals.shared.arrTask_Lookup.ToneId = 0
             MyGlobals.shared.arrTask_Lookup.IconFile = ""
         case genmOperation.Edit:
             strTitle = "Edit Task"
-            strTask = MyGlobals.shared.arrTask[intIndex].Task
-            dteDate = MyGlobals.shared.arrTask[intIndex].DateTime
-            blnAlarmMessageOn = MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn == 1
+            MyGlobals.shared.arrTask_Lookup.Task = MyGlobals.shared.arrTask[intIndex].Task
+            MyGlobals.shared.arrTask_Lookup.DateTime = MyGlobals.shared.arrTask[intIndex].DateTime
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn
+            MyGlobals.shared.arrTask_Lookup.ToneId = MyGlobals.shared.arrTask[intIndex].ToneId
             MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[intIndex].IconFile
         }
     }
@@ -109,10 +111,10 @@ class entryTableViewController: UITableViewController {
         
         // Layout the values
         navItem.title = strTitle
-        txtTask.text = strTask
-        dtpTask.date  = dteDate
-        swtIsAlarmMessageOn.setOn(blnAlarmMessageOn, animated: true)
-//        lblToneName.text = MyGlobals.shared.arrTask_Lookup.ToneId
+        txtTask.text = MyGlobals.shared.arrTask_Lookup.Task
+        dtpTask.date  = MyGlobals.shared.arrTask_Lookup.DateTime
+        swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn == 1, animated: true)
+        lblToneName.text = "(" + MyGlobals.shared.arrTone[MyGlobals.shared.arrTask_Lookup.ToneId] + ")"
         if (MyGlobals.shared.arrTask_Lookup.IconFile != "") {
             imgIcon.image = UIImage(named: MyGlobals.shared.arrTask_Lookup.IconFile)
         }
@@ -142,6 +144,7 @@ class entryTableViewController: UITableViewController {
             } else {
                 lStruTask.IsAlarmMessageOn = 0
             }
+            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
             lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
             
             // Not Similar Value/Operation
@@ -175,10 +178,24 @@ class entryTableViewController: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // var selectedIndexPath: IndexPath = self.tableView.indexPathForSelectedRow!
+        
+        // Pass the current value to Global Lookup
+        MyGlobals.shared.arrTask_Lookup.Task = txtTask.text!
+        MyGlobals.shared.arrTask_Lookup.DateTime = dtpTask.date
+        if (swtIsAlarmMessageOn.isOn == true) {
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
+        } else {
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 0
+        }
+        if (MyGlobals.shared.arrTask_Lookup.IconFile != "") {
+            imgIcon.image = UIImage(named: MyGlobals.shared.arrTask_Lookup.IconFile)
+        }
+        
         if (segue.identifier == "segueToneView") {
             let tvc: toneTableViewController = segue.destination as! toneTableViewController
             tvc.intIndex = intIndex
+        } else if (segue.identifier == "segueIconView") {
+            
         }
     }
     

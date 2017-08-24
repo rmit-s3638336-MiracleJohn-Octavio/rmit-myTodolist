@@ -33,6 +33,7 @@ enum genmDateFormat: String {
     case WekDayMonYrsHrsMinSec
     case WekDayMonYrsHrsMin
     case WekDayMonHrsMin
+    case DayMonYrsHrsMin
     case MonDayYrs
     case HrsMin
     case HrsMinSec
@@ -87,9 +88,12 @@ class MyGlobals {
         }
         
         // Dummy Data            .
-        var arrTaskList = mStringToArray("First,Second Second Second Second Second Second Second Second Second Second Second Second ,Third")
-        var arrTaskCompleted = [1, 0, 1]
-        var arrTaskDateTime = mStringToArray(mDateToString(Date()) + "|" + mDateToString(Date()) + "|" + mDateToString(Date()),"|")
+        var arrTaskList = mStringToArray("Exercise,I will be going to the train station to catch up the train going to Melbourne Central,Study Swift")
+        var arrTaskCompleted = [1, 0, 0]
+        var arrTaskDateTime = mStringToArray(
+            mDateToString(mStringToDate("24 AUG 2017, 08:00 am",.DayMonYrsHrsMin)) + "|" +
+            mDateToString(mStringToDate("25 AUG 2017, 08:00 am",.DayMonYrsHrsMin)) + "|" +
+            mDateToString(mStringToDate("26 AUG 2017, 07:00 pm",.DayMonYrsHrsMin)),"|")
         var arrIsAlarmMessageOn = [1, 1, 0]
         var arrToneId = [1, 1, 4]
         var arrIconFile_Dummy = mStringToArray("01.png,06.png,09.png")
@@ -155,6 +159,8 @@ class MyGlobals {
             strRetDateFormat = "EEE, dd MMM yyyy, hh:mm a"
         case .WekDayMonHrsMin:
             strRetDateFormat = "EEE, dd MMM, hh:mm a"
+        case .DayMonYrsHrsMin:
+            strRetDateFormat = "dd MMM yyyy, hh:mm a"
         case .MonDayYrs:
             strRetDateFormat = "MMM dd yyyy"
         case .HrsMin:
