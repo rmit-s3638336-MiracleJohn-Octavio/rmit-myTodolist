@@ -179,6 +179,11 @@ class MyGlobals {
         let (h, m, s) = mSecondsToHoursMinutesSeconds(seconds)
         return ("\(h)h \(m)m \(s)s")
     }
+    
+    func mSecondsToHoursMinutes(_ seconds:Int) -> String {
+        let (h, m, s) = mSecondsToHoursMinutesSeconds(seconds)
+        return ("\(h)h \(m)m")
+    }
 }
 
 

@@ -19,7 +19,7 @@ class taskTableViewController: UITableViewController {
         MyGlobals.shared.mInitialize()        
         
         // Create Timer
-        let tmrReloadData = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
+        let tmrReloadData = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
         tmrReloadData.fire()
     }
     
@@ -90,7 +90,7 @@ class taskTableViewController: UITableViewController {
                 cell.lblDateTime.textColor = UIColor.red
             } else {
                 // Future
-                cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutesSeconds(Int(elapsed) * -1) + ")"
+                cell.lblDateTime.text = MyGlobals.shared.mDateToString(MyGlobals.shared.arrTask[indexPath.row].DateTime,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutes(Int(elapsed) * -1) + ")"
                 cell.lblDateTime.textColor = UIColor.darkGray
             }
         } else {
