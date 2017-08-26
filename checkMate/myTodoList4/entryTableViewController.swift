@@ -91,14 +91,14 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         
         switch enmOperation {
         case genmOperation.Add:
-            title = "Add Task"
+            strTitle = "Add"
             MyGlobals.shared.arrTask_Lookup.Task = ""
             MyGlobals.shared.arrTask_Lookup.DateTime = Date()
             MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
             MyGlobals.shared.arrTask_Lookup.ToneId = 0
             MyGlobals.shared.arrTask_Lookup.IconFile = ""
         case genmOperation.Edit:
-            strTitle = "Edit Task"
+            strTitle = "Edit"
             MyGlobals.shared.arrTask_Lookup.Task = MyGlobals.shared.arrTask[intIndex].Task
             MyGlobals.shared.arrTask_Lookup.DateTime = MyGlobals.shared.arrTask[intIndex].DateTime
             MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn
