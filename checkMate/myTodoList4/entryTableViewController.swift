@@ -8,7 +8,7 @@
 
 import UIKit
 
-class entryTableViewController: UITableViewController {
+class entryTableViewController: UITableViewController, UITextFieldDelegate {
 
 // MARK: - Controls
     
@@ -68,7 +68,9 @@ class entryTableViewController: UITableViewController {
         
         // Set focus
         txtTask.becomeFirstResponder()
-
+        txtTask.delegate = self
+        txtTask.keyboardType = UIKeyboardType.asciiCapable
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -172,6 +174,12 @@ class entryTableViewController: UITableViewController {
     
     @IBAction func dtpTask_ValueChanged(_ sender: UIDatePicker) {
         updateLblDateTimeSelected(sender)
+    }
+    
+    // Remove the focus on textView
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        txtTask.resignFirstResponder()
+        return true
     }
     
 // MARK: - Navigation
