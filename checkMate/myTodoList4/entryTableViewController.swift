@@ -51,7 +51,7 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     
     // Field Variables
     var strTitle = String()
-//    var strTask = String()            // Use the lookup instead
+//    var strTask = String()            // Use the lookup instead Note: Lookup is a global Variable
 //    var dteDate = Date()              // Use the lookup instead
 //    var blnAlarmMessageOn = Bool()    // Use the lookup instead
 //    var strToneName = String()        // Use the lookup instead
