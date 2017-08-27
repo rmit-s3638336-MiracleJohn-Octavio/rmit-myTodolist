@@ -43,9 +43,21 @@ class taskTableViewCell: UITableViewCell {
         if (MyGlobals.shared.arrTask[sender.tag].IsTaskComplete == 0) {
             MyGlobals.shared.arrTask[sender.tag].IsTaskComplete = 1
             sender.setImage(MyGlobals.shared.imgChecked, for: .normal)
+            
+            // Strikethrough
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: lblTask.text!)
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+            lblTask.attributedText = attributeString
+            lblTask.textColor = UIColor.lightGray
         } else {
             MyGlobals.shared.arrTask[sender.tag].IsTaskComplete = 0
             sender.setImage(MyGlobals.shared.imgUnChecked, for: .normal)
+            
+            // Normal
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: lblTask.text!)
+            attributeString.removeAttribute(NSStrikethroughStyleAttributeName, range: NSMakeRange(0, attributeString.length))
+            lblTask.attributedText = attributeString
+            lblTask.textColor = UIColor.black
         }
     }
 
