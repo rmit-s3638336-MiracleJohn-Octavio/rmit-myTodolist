@@ -52,6 +52,7 @@ class toneTableViewController: UITableViewController {
             cell.btnCheckTone.setImage(MyGlobals.shared.imgUnChecked_Small, for: .normal)
         }
         
+        cell.isAccessibilityElement = true
         return cell
     }
     

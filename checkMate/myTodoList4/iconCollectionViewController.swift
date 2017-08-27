@@ -63,6 +63,7 @@ class iconCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! iconCollectionViewCell
         
         cell.imgIcon.image = UIImage(named: MyGlobals.shared.arrIconFile[indexPath.row])
+        cell.isAccessibilityElement = true
     
         return cell
     }

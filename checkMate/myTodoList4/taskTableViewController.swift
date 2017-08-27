@@ -19,8 +19,8 @@ class taskTableViewController: UITableViewController {
         MyGlobals.shared.mInitialize()        
         
         // Create Timer
-        let tmrReloadData = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
-        tmrReloadData.fire()
+//        let tmrReloadData = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
+//        tmrReloadData.fire()
     }
     
     override func viewDidAppear(_ animated: Bool) {
