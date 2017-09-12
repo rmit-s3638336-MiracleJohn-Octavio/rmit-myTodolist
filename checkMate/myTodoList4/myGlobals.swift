@@ -59,7 +59,7 @@ class MyGlobals {
     var arrTask = [gstruTask]()
     var arrTask_Lookup = gstruTask()
     
-    // Arrays - Master
+    // Arrays - Master File (Lookup)
     var arrTone = [String]()
     var arrIconFile = [String]()    // This will hold the Icon File (e.g. "01.png")
     
@@ -72,8 +72,11 @@ class MyGlobals {
     
 // MARK: - Methods
     
-    // Initialize - This is called only once
+    // ---------- Initialize - This is called only once
+    
     func mInitialize() {
+        
+        // ---------- Master File (Lookup)
         
         // Tone
         arrTone = mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
@@ -87,7 +90,8 @@ class MyGlobals {
             }
         }
         
-        // Dummy Data            .
+        // ---------- Dummy Data
+        
         var arrTaskList = mStringToArray("Exercise,I will be going to the train station to catch up the train going to Melbourne Central,Study Swift")
         var arrTaskCompleted = [1, 0, 0]
         var arrTaskDateTime = mStringToArray(
@@ -116,7 +120,8 @@ class MyGlobals {
 
     }
     
-    // Conversion
+    // ---------- Conversion
+    
     func mDateToString(_ dteDateValue: Date, _ enmDateFormat: genmDateFormat = genmDateFormat.WekDayMonYrsHrsMin) -> String {
         var dateFormat: String = ""
         let clsDateFormatter = DateFormatter()
