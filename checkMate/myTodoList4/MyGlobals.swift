@@ -18,6 +18,12 @@ import UIKit // mjNotes: Added
 */
 
 
+// Core Data
+let gObjAppDelegate = UIApplication.shared.delegate as! AppDelegate     // This requires UIKit
+let gObjContext = gObjAppDelegate.persistentContainer.viewContext
+
+// MARK: - For Deletion
+
 // Structure
 struct gstruTask {
     var Task = String()
@@ -55,8 +61,10 @@ class MyGlobals {
     // Global Shared
     static let shared = MyGlobals()
     
-    // Arrays - Transaction
-    var arrTask = [gstruTask]()
+    // Arrays - Transaction   
+    var arrMyTask: [Task] = []
+
+    var arrTask = [gstruTask]()             // Mark: To Delete
     var arrTask_Lookup = gstruTask()
     
     // Arrays - Master File (Lookup)

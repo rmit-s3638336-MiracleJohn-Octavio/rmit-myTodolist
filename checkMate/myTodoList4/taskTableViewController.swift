@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class taskTableViewController: UITableViewController {
+    
+// MARK: - Variables
+    
+    // Array that will hold the record from Core Data
+    var _arrTask = [Task]()
 
 // MARK: - Load
     
@@ -23,7 +29,7 @@ class taskTableViewController: UITableViewController {
 //        tmrReloadData.fire()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    func viewDidAppear_Old(_ animated: Bool) {
         
         // Sort the Array by Date Descending
         MyGlobals.shared.arrTask.sort{ $1.DateTime > $0.DateTime}
@@ -31,6 +37,20 @@ class taskTableViewController: UITableViewController {
         // Reload Data
         reloadData()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        /*
+         Function:
+         - This will Load records from CoreData to Array everytime the View will appear
+         */
+        
+        let objRequest = NSFetchRequest<Task>(entityName: "Task")                   // Need to "import CoreData"
+        // let objPredicate = NSPredicate(format: "name CONTAINS[cd] %@", "alpha")
+        // objRequest.predicate = objPredicate
+        
+        _arrTask = (try! gObjContext.fetch(objRequest))
+        self.tableView.reloadData()
     }
     
     func reloadData() {
@@ -45,8 +65,18 @@ class taskTableViewController: UITableViewController {
     }
     
     // mjNotes: Returns the total numnber of array elements
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView_Old(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MyGlobals.shared.arrTask.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /*
+         Function:
+         - This will return the number if elements from an Array that contains the records from Core Data
+         */
+        
+        return _arrTask.count
+        
     }
     
     // mjNotes: If the row was selected
@@ -69,7 +99,7 @@ class taskTableViewController: UITableViewController {
     
     // mjNotes: This will fill up the cells with rows found
     // Data Load
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView_Old(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskTableViewCell", for: indexPath) as! taskTableViewCell
         
         cell.lblTask.text = MyGlobals.shared.arrTask[indexPath.row].Task
@@ -138,12 +168,27 @@ class taskTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        /*
+         Function:
+         - This will load the element from array to the TableViewController cells
+         */
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskTableViewCell", for: indexPath) as! taskTableViewCell
+        
+        let objTask = _arrTask[indexPath.row]
+        cell.lblTask?.text = objTask.name
+        
+        return cell
+    }
+
+    
     
 // MARK: - Navigation
     
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func prepare_Old(for segue: UIStoryboardSegue, sender: Any?) {
         let lEntryTableViewController: entryTableViewController = segue.destination as! entryTableViewController
         
         if (segue.identifier == "segueAddViewController") {
@@ -156,6 +201,21 @@ class taskTableViewController: UITableViewController {
             lEntryTableViewController.intIndex = selectedIndexPath.row
             lEntryTableViewController.enmOperation = genmOperation.Edit
             
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
+         Function:
+         - This will call the ViewController that will have the Data Entry
+         - It will pass the value of the current selected cell to the ViewController
+         
+         */
+        
+        if segue.identifier == "segueEditViewController" {
+            let v = segue.destination as! entryTableViewController
+            let indexpath = self.tableView.indexPathForSelectedRow
+            v._objTask = _arrTask[(indexpath?.row)!]
         }
     }
     

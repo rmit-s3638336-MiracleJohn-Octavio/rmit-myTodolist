@@ -39,12 +39,14 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     
 // MARK: - Variables
     
+    var _objTask: Task?
+    
     var curDate = Date()
     var curCalendar = Calendar.current
     var curComponent = DateComponents()
     
     // Used for Add and Edit
-    var enmOperation = genmOperation.Add
+    var _enmOperation = genmOperation.Add
     
     // This will recieve the index from Root
     var intIndex =  Int()
@@ -64,7 +66,7 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Initialize
-        initVariables()
+        initialize()
         
         // Set focus
         txtTask.becomeFirstResponder()
@@ -73,23 +75,20 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         // Display Data Entry -- put it here to avoid delay in
         
         // displaying the data
-        displayDataEntry()
+//        displayDataEntry()
     }
     
-    func initVariables() {
+    func initVariables_Old() {
         
         // Fill up the Lookup
         MyGlobals.shared.arrTask_Lookup.ToneId = 0
         
         
-        switch enmOperation {
+        switch _enmOperation {
         case genmOperation.Add:
             strTitle = "Add"
             MyGlobals.shared.arrTask_Lookup.Task = ""
@@ -105,6 +104,21 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
             MyGlobals.shared.arrTask_Lookup.ToneId = MyGlobals.shared.arrTask[intIndex].ToneId
             MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[intIndex].IconFile
         }
+    }
+    
+    func initialize() {
+        
+        /* 
+         "task" is assigned to _objTask. So, if _objTask is NOT nil then its true. Hence,
+         it will do the edit mode.
+        */
+        if let task = _objTask {
+            // Edit Mode
+            txtTask.text = task.name
+        } else {
+            txtTask.text = ""
+        }
+        
     }
     
     func displayDataEntry() {
@@ -134,7 +148,7 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     
 // MARK: - Events
     
-    @IBAction func btnSave_Tapped(_ sender: AnyObject) {
+    @IBAction func btnSave_Tapped_VeryOld(_ sender: AnyObject) {
         var lStruTask = gstruTask()
         if (txtTask.text != "") {
             
@@ -150,7 +164,7 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
             lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
             
             // Not Similar Value/Operation
-            switch enmOperation {
+            switch _enmOperation {
             case genmOperation.Add:
                 lStruTask.IsTaskComplete = 0
                 
@@ -164,8 +178,57 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
         // Back to Root View Controller
-        // mjNotes: The "_ =" prevents the compiler from displaying a warning message
-        _ = self.navigationController?.popToRootViewController(animated: true)    }
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func btnSave_Tapped_Old(_ sender: AnyObject) {
+        
+        var lStruTask = gstruTask()
+        if (txtTask.text != "") {
+            
+            // Similar Value/Operation
+            lStruTask.Task = txtTask.text!
+            lStruTask.DateTime = dtpTask.date
+            if (swtIsAlarmMessageOn.isOn == true) {
+                lStruTask.IsAlarmMessageOn = 1
+            } else {
+                lStruTask.IsAlarmMessageOn = 0
+            }
+            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
+            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
+            
+            // Not Similar Value/Operation
+            switch _enmOperation {
+            case genmOperation.Add:
+                lStruTask.IsTaskComplete = 0
+                
+                MyGlobals.shared.arrTask.append(lStruTask)
+                txtTask.text = ""
+            case genmOperation.Edit:
+                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[intIndex].IsTaskComplete // Same Value
+                
+                MyGlobals.shared.arrTask[intIndex] = lStruTask
+            }
+        }
+        
+        // Back to Root View Controller
+        _ = self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+
+    @IBAction func btnSave_Tapped(_ sender: AnyObject) {
+        if _objTask == nil {
+            _objTask = Task(context: gObjContext)
+        }
+        
+        _objTask?.name = txtTask.text
+        
+        gObjAppDelegate.saveContext()
+        
+        // _ = self.navigationController?.popToRootViewController(animated: true) // Root
+        _ = self.navigationController?.popViewController(animated: true)          // Previous
+    }
+    
     
     @IBAction func btnPresets_Tapped(_ sender: UIButton) {
         
@@ -268,5 +331,11 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     func updateLblDateTimeSelected(_ sender: UIDatePicker) {
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(sender.date, genmDateFormat.WekDayMonHrsMin)
     }
-
+ 
+    func saveData() {
+        let task = Task(context: gObjContext)
+        task.name = txtTask.text!
+        gObjAppDelegate.saveContext()
+    }
+    
 }
