@@ -6,7 +6,7 @@
         <attribute name="isAlarmOn" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isTaskComplete" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="toneId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Task" positionX="-63" positionY="-18" width="128" height="135"/>

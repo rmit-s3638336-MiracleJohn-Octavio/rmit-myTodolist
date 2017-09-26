@@ -13,7 +13,7 @@ class toneTableViewController: UITableViewController {
 // MARK: - Variables
     
     // This will recieve the index from Root
-    var intIndex =  Int()
+    var _intIndex =  Int()
 
 // MARK: - Load
     
@@ -41,12 +41,11 @@ class toneTableViewController: UITableViewController {
     // Data Load
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "toneTableViewCell", for: indexPath) as! toneTableViewCell
-        cell.lblTone.text = MyGlobals.shared.arrTone[indexPath.row]
+        let currentTone = MyGlobals.shared.arrTone[indexPath.row]
         
-        let currRow = indexPath.row
-        let toneId = MyGlobals.shared.arrTask[intIndex].ToneId
+        cell.lblTone.text = currentTone
         
-        if (toneId == currRow) {
+        if (MyGlobals.shared.selectedTone == currentTone) {
             cell.btnCheckTone.setImage(MyGlobals.shared.imgChecked_Small, for: .normal)
         } else {
             cell.btnCheckTone.setImage(MyGlobals.shared.imgUnChecked_Small, for: .normal)
@@ -55,19 +54,6 @@ class toneTableViewController: UITableViewController {
         cell.isAccessibilityElement = true
         return cell
     }
-    
-    // mjNotes: Delete Row
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        // TODO: Delete this if done testing
-//        if editingStyle == .delete {
-//            gArrTaskList.remove(at: indexPath.row) // Remove Element from Array
-//            tableView.reloadData() // Reload data from TableView
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
-    }
-    
     
 // MARK: - Navigation
     
@@ -78,15 +64,13 @@ class toneTableViewController: UITableViewController {
     
     // Reset all checkbox
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row // mjNotes: Selected Row
-        print("Row: \(row)")
         
-        MyGlobals.shared.arrTask_Lookup.ToneId = indexPath.row
+        // Get the selected tone
+        MyGlobals.shared.selectedTone = MyGlobals.shared.arrTone[indexPath.row]
         
         // Back to Root View Controller
-        // mjNotes: The "_ =" prevents the compiler from displaying a warning message
-//        _ = self.navigationController?.popToRootViewController(animated: true) // Root
-        _ = self.navigationController?.popViewController(animated: true)         // Previous
+        // _ = self.navigationController?.popToRootViewController(animated: true) // Root
+        _ = self.navigationController?.popViewController(animated: true)          // Previous
         
     }
     

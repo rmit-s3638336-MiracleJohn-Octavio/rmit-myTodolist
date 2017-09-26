@@ -9,6 +9,10 @@
 import UIKit
 
 class taskTableViewCell: UITableViewCell {
+    
+// MARK: - Variables
+    
+    var _objTask: Task?
 
 //    @IBOutlet weak var btnCheckTask: chkButton!
     @IBOutlet weak var btnCheckTask: UIButton!
@@ -40,8 +44,12 @@ class taskTableViewCell: UITableViewCell {
     // MARK: - Methods
     
     func updateCheckbox (_ sender:UIButton) {
-        if (MyGlobals.shared.arrTask[sender.tag].IsTaskComplete == 0) {
-            MyGlobals.shared.arrTask[sender.tag].IsTaskComplete = 1
+        if (_objTask?.isTaskComplete == 0) {
+            
+            // Save
+            _objTask?.isTaskComplete = 1
+            gObjAppDelegate.saveContext()
+            
             sender.setImage(MyGlobals.shared.imgChecked, for: .normal)
             
             // Strikethrough
@@ -49,8 +57,13 @@ class taskTableViewCell: UITableViewCell {
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
             lblTask.attributedText = attributeString
             lblTask.textColor = UIColor.lightGray
+            
         } else {
-            MyGlobals.shared.arrTask[sender.tag].IsTaskComplete = 0
+            
+            // Save
+            _objTask?.isTaskComplete = 0
+            gObjAppDelegate.saveContext()
+            
             sender.setImage(MyGlobals.shared.imgUnChecked, for: .normal)
             
             // Normal
@@ -58,6 +71,7 @@ class taskTableViewCell: UITableViewCell {
             attributeString.removeAttribute(NSStrikethroughStyleAttributeName, range: NSMakeRange(0, attributeString.length))
             lblTask.attributedText = attributeString
             lblTask.textColor = UIColor.black
+            
         }
     }
 

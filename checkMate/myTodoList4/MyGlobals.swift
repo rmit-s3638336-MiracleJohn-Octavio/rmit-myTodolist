@@ -69,7 +69,11 @@ class MyGlobals {
     
     // Arrays - Master File (Lookup)
     var arrTone = [String]()
-    var arrIconFile = [String]()    // This will hold the Icon File (e.g. "01.png")
+    var arrIcon = [String]()                // This will hold the Icon File (e.g. "01.png")
+    
+    // Selected from the Lookup
+    var selectedTone: String = ""
+    var selectedIcon: String = ""
     
     // Images
     let imgChecked = UIImage(named: "Check.png")
@@ -88,13 +92,14 @@ class MyGlobals {
         
         // Tone
         arrTone = mStringToArray("Apex,Beacon,Bulletin,By The Seaside,Chimes,Circuit,Constellation,Cosmic,Crystals")
+        selectedTone = arrTone[0]
         
         // Icon File
         for i in 1 ..< 28 {
             if (i < 10) {
-                arrIconFile.append("0" + String(i) + ".png")
+                arrIcon.append("0" + String(i) + ".png")
             } else {
-                arrIconFile.append(String(i) + ".png")
+                arrIcon.append(String(i) + ".png")
             }
         }
         
@@ -190,6 +195,10 @@ class MyGlobals {
         return arrReturnValue
     }
     
+    func mSecondsToDaysHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int, Int) {
+        return (seconds / 86400, (seconds % 86400) / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
     func mSecondsToHoursMinutesSeconds(_ seconds : Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
@@ -202,6 +211,11 @@ class MyGlobals {
     func mSecondsToHoursMinutes(_ seconds:Int) -> String {
         let (h, m, s) = mSecondsToHoursMinutesSeconds(seconds)
         return ("\(h)h \(m)m")
+    }
+    
+    func mSecondsToDays(_ seconds:Int) -> String {
+        let (d, h, m, s) = mSecondsToDaysHoursMinutesSeconds(seconds)
+        return ("\(d)d")
     }
 }
 
