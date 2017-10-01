@@ -39,18 +39,20 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     
 // MARK: - Variables
     
-    var curDate = Date()
-    var curCalendar = Calendar.current
-    var curComponent = DateComponents()
+    var _objTask: Task?
+    
+    var _curDate = Date()
+    var _curCalendar = Calendar.current
+    var _curComponent = DateComponents()
     
     // Used for Add and Edit
-    var enmOperation = genmOperation.Add
+    var _enmOperation = genmOperation.Add
     
     // This will recieve the index from Root
-    var intIndex =  Int()
+    var _intIndex =  Int()
     
     // Field Variables
-    var strTitle = String()
+    var _strTitle = String()
 //    var strTask = String()            // Use the lookup instead Note: Lookup is a global Variable
 //    var dteDate = Date()              // Use the lookup instead
 //    var blnAlarmMessageOn = Bool()    // Use the lookup instead
@@ -64,7 +66,75 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Initialize
-        initVariables()
+        initialize()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Display Data Entry -- put it here to avoid delay in
+        updateLookupData()
+        
+    }
+    
+    func initVariables_Old() {
+        
+        // Fill up the Lookup
+        MyGlobals.shared.arrTask_Lookup.ToneId = 0
+        
+        switch _enmOperation {
+        case genmOperation.Add:
+            _strTitle = "Add"
+            MyGlobals.shared.arrTask_Lookup.Task = ""
+            MyGlobals.shared.arrTask_Lookup.DateTime = Date()
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
+            MyGlobals.shared.arrTask_Lookup.ToneId = 0
+            MyGlobals.shared.arrTask_Lookup.IconFile = ""
+        case genmOperation.Edit:
+            _strTitle = "Edit"
+            MyGlobals.shared.arrTask_Lookup.Task = MyGlobals.shared.arrTask[_intIndex].Task
+            MyGlobals.shared.arrTask_Lookup.DateTime = MyGlobals.shared.arrTask[_intIndex].DateTime
+            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = MyGlobals.shared.arrTask[_intIndex].IsAlarmMessageOn
+            MyGlobals.shared.arrTask_Lookup.ToneId = MyGlobals.shared.arrTask[_intIndex].ToneId
+            MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[_intIndex].IconFile
+        }
+    }
+    
+    func initialize() {
+        /*
+         "task" is assigned to _objTask. So, if _objTask is NOT nil then its true. Hence,
+         it will do the edit mode.
+        */
+        
+        if let task = _objTask {
+            // Set the Operation
+            _strTitle = "Edit"
+            _enmOperation = genmOperation.Edit
+            
+            // Set the variables for Lookups
+            MyGlobals.shared.selectedTone = task.tone!
+            MyGlobals.shared.selectedIcon = task.iconFile!
+            
+            // Set the value of Data Entry
+            txtTask.text = task.name
+            dtpTask.date  = task.dateTime as! Date
+            swtIsAlarmMessageOn.setOn(task.isAlarmOn == 1, animated: true)
+        } else {
+            // Set the Operation
+            _strTitle = "Add"
+            _enmOperation = genmOperation.Add
+            
+            // Set the variables for Lookups
+            MyGlobals.shared.selectedTone = MyGlobals.shared.arrTone[0]
+            MyGlobals.shared.selectedIcon = MyGlobals.shared.arrIcon[0]
+            
+            // Set the value of Data Entry
+            txtTask.text = ""
+            dtpTask.date  = Date()
+            swtIsAlarmMessageOn.setOn(true, animated: true)
+        }
+        
+        // Set value to general controls
+        navItem.title = _strTitle
         
         // Set focus
         txtTask.becomeFirstResponder()
@@ -73,46 +143,12 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // Display Data Entry -- put it here to avoid delay in
-        
-        // displaying the data
-        displayDataEntry()
-    }
-    
-    func initVariables() {
-        
-        // Fill up the Lookup
-        MyGlobals.shared.arrTask_Lookup.ToneId = 0
-        
-        
-        switch enmOperation {
-        case genmOperation.Add:
-            strTitle = "Add"
-            MyGlobals.shared.arrTask_Lookup.Task = ""
-            MyGlobals.shared.arrTask_Lookup.DateTime = Date()
-            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
-            MyGlobals.shared.arrTask_Lookup.ToneId = 0
-            MyGlobals.shared.arrTask_Lookup.IconFile = ""
-        case genmOperation.Edit:
-            strTitle = "Edit"
-            MyGlobals.shared.arrTask_Lookup.Task = MyGlobals.shared.arrTask[intIndex].Task
-            MyGlobals.shared.arrTask_Lookup.DateTime = MyGlobals.shared.arrTask[intIndex].DateTime
-            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = MyGlobals.shared.arrTask[intIndex].IsAlarmMessageOn
-            MyGlobals.shared.arrTask_Lookup.ToneId = MyGlobals.shared.arrTask[intIndex].ToneId
-            MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[intIndex].IconFile
-        }
-    }
-    
-    func displayDataEntry() {
+    func displayDataEntry_Old() {
         
         // Values taken from the Lookup
         
         // Layout the values
-        navItem.title = strTitle
+        navItem.title = _strTitle
         txtTask.text = MyGlobals.shared.arrTask_Lookup.Task
         dtpTask.date  = MyGlobals.shared.arrTask_Lookup.DateTime
         swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn == 1, animated: true)
@@ -131,10 +167,28 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
     }
 
+    func updateLookupData() {
+        
+        // Values taken from the Lookup
+        lblToneName.text = "(" + MyGlobals.shared.selectedTone + ")"
+        imgIcon.image = UIImage(named: MyGlobals.shared.selectedIcon)
+        
+        // Make the UIImage for Icon Circle
+        imgIcon.layer.borderWidth = 2
+        imgIcon.layer.masksToBounds = false
+        imgIcon.layer.borderColor = UIColor.gray.cgColor
+        imgIcon.layer.cornerRadius = 25
+        imgIcon.clipsToBounds = true
+        
+        // Update the DateTime object
+        lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
+    }
+
+    
     
 // MARK: - Events
     
-    @IBAction func btnSave_Tapped(_ sender: AnyObject) {
+    @IBAction func btnSave_Tapped_VeryOld(_ sender: AnyObject) {
         var lStruTask = gstruTask()
         if (txtTask.text != "") {
             
@@ -150,25 +204,83 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
             lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
             
             // Not Similar Value/Operation
-            switch enmOperation {
+            switch _enmOperation {
             case genmOperation.Add:
                 lStruTask.IsTaskComplete = 0
                 
                 MyGlobals.shared.arrTask.append(lStruTask)
                 txtTask.text = ""
             case genmOperation.Edit:
-                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[intIndex].IsTaskComplete // Same Value
+                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[_intIndex].IsTaskComplete // Same Value
                 
-                MyGlobals.shared.arrTask[intIndex] = lStruTask
+                MyGlobals.shared.arrTask[_intIndex] = lStruTask
             }
         }
         
         // Back to Root View Controller
-        // mjNotes: The "_ =" prevents the compiler from displaying a warning message
-        _ = self.navigationController?.popToRootViewController(animated: true)    }
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func btnSave_Tapped_Old(_ sender: AnyObject) {
+        
+        var lStruTask = gstruTask()
+        if (txtTask.text != "") {
+            
+            // Similar Value/Operation
+            lStruTask.Task = txtTask.text!
+            lStruTask.DateTime = dtpTask.date
+            if (swtIsAlarmMessageOn.isOn == true) {
+                lStruTask.IsAlarmMessageOn = 1
+            } else {
+                lStruTask.IsAlarmMessageOn = 0
+            }
+            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
+            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
+            
+            // Not Similar Value/Operation
+            switch _enmOperation {
+            case genmOperation.Add:
+                lStruTask.IsTaskComplete = 0
+                
+                MyGlobals.shared.arrTask.append(lStruTask)
+                txtTask.text = ""
+            case genmOperation.Edit:
+                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[_intIndex].IsTaskComplete // Same Value
+                
+                MyGlobals.shared.arrTask[_intIndex] = lStruTask
+            }
+        }
+        
+        // Back to Root View Controller
+        _ = self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+
+    @IBAction func btnSave_Tapped(_ sender: AnyObject) {
+        if _objTask == nil {
+            _objTask = Task(context: gObjContext)
+        }
+        
+        // Pass the value
+        _objTask?.name = txtTask.text
+        _objTask?.dateTime = dtpTask.date as NSDate?
+        if (swtIsAlarmMessageOn.isOn == true) {
+            _objTask?.isAlarmOn = 1
+        } else {
+            _objTask?.isAlarmOn = 0
+        }
+        _objTask?.tone = MyGlobals.shared.selectedTone
+        _objTask?.iconFile = MyGlobals.shared.selectedIcon
+        
+        // Save
+        gObjAppDelegate.saveContext()
+        
+        // _ = self.navigationController?.popToRootViewController(animated: true) // Root
+        _ = self.navigationController?.popViewController(animated: true)          // Previous
+    }
+    
     
     @IBAction func btnPresets_Tapped(_ sender: UIButton) {
-        
         setDate(sender)
     }
     
@@ -201,7 +313,7 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         
         if (segue.identifier == "segueToneView") {
             let tvc: toneTableViewController = segue.destination as! toneTableViewController
-            tvc.intIndex = intIndex
+            tvc._intIndex = _intIndex
         } else if (segue.identifier == "segueIconView") {
             
         }
@@ -215,9 +327,9 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         let locCalendar = Calendar.current
         var locComponent = locCalendar.dateComponents([.day,.month,.year, .hour, .minute, .second], from: locDate)
         
-        curDate = Date()
-        curCalendar = Calendar.current
-        curComponent = curCalendar.dateComponents([.day,.month,.year, .hour, .minute, .second], from: curDate)
+        _curDate = Date()
+        _curCalendar = Calendar.current
+        _curComponent = _curCalendar.dateComponents([.day,.month,.year, .hour, .minute, .second], from: _curDate)
         
         /*
          Apply the values accordingly
@@ -238,9 +350,9 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
             locComponent.minute = 00
             
         case btnSetToday:
-            locComponent.day = curComponent.day
-            locComponent.month = curComponent.month
-            locComponent.year = curComponent.year
+            locComponent.day = _curComponent.day
+            locComponent.month = _curComponent.month
+            locComponent.year = _curComponent.year
         case btnAddHrs:
             locComponent.hour! += 3
         case btnAddDys:
@@ -268,5 +380,11 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     func updateLblDateTimeSelected(_ sender: UIDatePicker) {
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(sender.date, genmDateFormat.WekDayMonHrsMin)
     }
-
+ 
+    func saveData() {
+        let task = Task(context: gObjContext)
+        task.name = txtTask.text!
+        gObjAppDelegate.saveContext()
+    }
+    
 }

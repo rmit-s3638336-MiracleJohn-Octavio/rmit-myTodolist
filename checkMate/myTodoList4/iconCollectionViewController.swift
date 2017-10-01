@@ -54,7 +54,7 @@ class iconCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return MyGlobals.shared.arrIconFile.count
+        return MyGlobals.shared.arrIcon.count
     }
 
 // MARK: - Data Load
@@ -62,7 +62,7 @@ class iconCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! iconCollectionViewCell
         
-        cell.imgIcon.image = UIImage(named: MyGlobals.shared.arrIconFile[indexPath.row])
+        cell.imgIcon.image = UIImage(named: MyGlobals.shared.arrIcon[indexPath.row])
         cell.isAccessibilityElement = true
     
         return cell
@@ -73,7 +73,7 @@ class iconCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
         
-        MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrIconFile[indexPath.row]
+        MyGlobals.shared.selectedIcon = MyGlobals.shared.arrIcon[indexPath.row]
         
         // Back to Root View Controller
         // mjNotes: The "_ =" prevents the compiler from displaying a warning message
