@@ -145,6 +145,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		202A73771F7D4D680017C3B7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				206D8CC31F36BB630052AA71 /* Main.storyboard */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		206D8CB31F36BB630052AA71 = {
 			isa = PBXGroup;
 			children = (
@@ -166,12 +174,9 @@
 		206D8CBE1F36BB630052AA71 /* checkMate */ = {
 			isa = PBXGroup;
 			children = (
-				206D8CC31F36BB630052AA71 /* Main.storyboard */,
-				20BA22AE1F6814140055B642 /* data */,
-				20BE8F361F42741B009968B7 /* methods */,
-				20BE8F351F4273B0009968B7 /* uiControl */,
-				20BE8F341F427383009968B7 /* viewController */,
-				20E8AD391F4AB7AC00DF5B38 /* images */,
+				20BA22AE1F6814140055B642 /* model */,
+				202A73771F7D4D680017C3B7 /* view */,
+				20BE8F341F427383009968B7 /* controller */,
 				206D8CC61F36BB630052AA71 /* Assets.xcassets */,
 				206D8CC81F36BB630052AA71 /* LaunchScreen.storyboard */,
 				206D8CCB1F36BB630052AA71 /* Info.plist */,
@@ -181,17 +186,19 @@
 			path = myTodoList4;
 			sourceTree = "<group>";
 		};
-		20BA22AE1F6814140055B642 /* data */ = {
+		20BA22AE1F6814140055B642 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				20E8AD391F4AB7AC00DF5B38 /* images */,
 				2038213A1F6AE7E200D940FD /* Model.xcdatamodeld */,
 			);
-			name = data;
+			name = model;
 			sourceTree = "<group>";
 		};
-		20BE8F341F427383009968B7 /* viewController */ = {
+		20BE8F341F427383009968B7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				20BE8F2E1F3C9801009968B7 /* MyGlobals.swift */,
 				206D8CBF1F36BB630052AA71 /* AppDelegate.swift */,
 				20E8AD311F497AF900DF5B38 /* taskTableViewController.swift */,
 				20E8AD2D1F49204C00DF5B38 /* taskTableViewCell.swift */,
@@ -202,24 +209,9 @@
 				20E8AD371F4AB01900DF5B38 /* iconCollectionViewCell.swift */,
 				20E8AD841F4ED27000DF5B38 /* onboardPageViewController.swift */,
 				20BE8F281F3C6C8B009968B7 /* entryTableViewController.swift */,
-			);
-			name = viewController;
-			sourceTree = "<group>";
-		};
-		20BE8F351F4273B0009968B7 /* uiControl */ = {
-			isa = PBXGroup;
-			children = (
 				209BFA791F3C269F006285F1 /* chkButton.swift */,
 			);
-			name = uiControl;
-			sourceTree = "<group>";
-		};
-		20BE8F361F42741B009968B7 /* methods */ = {
-			isa = PBXGroup;
-			children = (
-				20BE8F2E1F3C9801009968B7 /* MyGlobals.swift */,
-			);
-			name = methods;
+			name = controller;
 			sourceTree = "<group>";
 		};
 		20E8AD391F4AB7AC00DF5B38 /* images */ = {

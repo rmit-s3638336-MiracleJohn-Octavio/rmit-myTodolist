@@ -45,11 +45,22 @@ class taskTableViewController: UITableViewController {
          - This will Load records from CoreData to Array everytime the View will appear
          */
         
+        // Object
         let objRequest = NSFetchRequest<Task>(entityName: "Task")                   // Need to "import CoreData"
+        
+        // Filter
         // let objPredicate = NSPredicate(format: "name CONTAINS[cd] %@", "alpha")
         // objRequest.predicate = objPredicate
         
+        // Sort
+        let sortDescriptor = NSSortDescriptor(key: "dateTime", ascending: true)
+        let sortDescriptors = [sortDescriptor]
+        objRequest.sortDescriptors = sortDescriptors
+        
+        // Fetch
         _arrTask = (try! gObjContext.fetch(objRequest))
+        
+        // Reload Data
         self.tableView.reloadData()
     }
     
@@ -270,7 +281,7 @@ class taskTableViewController: UITableViewController {
      
      */
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 62.0
+        return 62.0        
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

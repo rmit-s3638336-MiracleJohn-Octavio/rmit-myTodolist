@@ -82,7 +82,7 @@
         <scene sceneID="oyl-vw-IJS">
             <objects>
                 <collectionViewController id="oTk-Hs-CIM" customClass="iconCollectionViewController" customModule="checkMate" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TXh-uo-ih7">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="TXh-uo-ih7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -277,6 +277,7 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Reminders" id="Mzb-v5-h51">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="Duc-39-4aO"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wmy-AP-zJR">
                             <connections>
                                 <segue destination="F0M-rO-YvP" kind="show" identifier="segueAddViewController" id="bA5-Jm-oSa"/>
