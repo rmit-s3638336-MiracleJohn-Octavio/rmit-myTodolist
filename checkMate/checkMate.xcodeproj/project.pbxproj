@@ -58,6 +58,7 @@
 		20FE84EA1F4F219E00DB755F /* obThree.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FE84E71F4F219E00DB755F /* obThree.png */; };
 		20FE84EB1F4F219E00DB755F /* obTwo.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FE84E81F4F219E00DB755F /* obTwo.png */; };
 		20FE84F31F52AA3800DB755F /* checkMateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE84F21F52AA3800DB755F /* checkMateUITests.swift */; };
+		435336B41F8325B6004B702D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435336B31F8325B6004B702D /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		20FE84F01F52AA3800DB755F /* checkMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = checkMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FE84F21F52AA3800DB755F /* checkMateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkMateUITests.swift; sourceTree = "<group>"; };
 		20FE84F41F52AA3800DB755F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		435336B31F8325B6004B702D /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				20E8AD841F4ED27000DF5B38 /* onboardPageViewController.swift */,
 				20BE8F281F3C6C8B009968B7 /* entryTableViewController.swift */,
 				209BFA791F3C269F006285F1 /* chkButton.swift */,
+				435336B31F8325B6004B702D /* PhotoViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				20E8AD341F4A85F900DF5B38 /* iconCollectionViewController.swift in Sources */,
 				206D8CC01F36BB630052AA71 /* AppDelegate.swift in Sources */,
 				20BE8F291F3C6C8B009968B7 /* entryTableViewController.swift in Sources */,
+				435336B41F8325B6004B702D /* PhotoViewController.swift in Sources */,
 				2038213C1F6AE7E200D940FD /* Model.xcdatamodeld in Sources */,
 				20E8AD381F4AB01900DF5B38 /* iconCollectionViewCell.swift in Sources */,
 			);

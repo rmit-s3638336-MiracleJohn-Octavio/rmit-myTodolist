@@ -21,7 +21,7 @@ class taskTableViewCell: UITableViewCell {
     @IBOutlet weak var imgClockIcon: UIImageView!
     @IBOutlet weak var imgIcon: UIImageView!
     
-    // MARK: - Defaults
+    // MARK: - Defaultss
     
     override func awakeFromNib() {
         super.awakeFromNib()
