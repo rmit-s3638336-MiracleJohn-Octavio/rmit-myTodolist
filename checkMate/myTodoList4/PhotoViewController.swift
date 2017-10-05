@@ -12,10 +12,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var pickedImaged: UIImageView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,7 +21,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // Allow the user to open the camera and take a photo
     @IBAction func cameraButtonAction(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
             let imagePicker = UIImagePickerController()
@@ -32,9 +30,9 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
         }
-        
     }
     
+    // Allow the user to open the photo library and choose a photo
     @IBAction func photoLibraryAction(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             let imagePicker = UIImagePickerController()
@@ -43,12 +41,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
-        
-        
     }
     
+    // Save iamge to device library
     @IBAction func saveAction(_ sender: UIButton) {
-        
         let imageData = UIImageJPEGRepresentation(pickedImaged.image!, 0.75)
         let compressedJPEGImage = UIImage(data: imageData!)
         UIImageWriteToSavedPhotosAlbum(compressedJPEGImage!, nil, nil, nil)
@@ -60,7 +56,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.dismiss(animated: true, completion: nil);
     }
     
-    
+    // Function not currently in use. It's a popup telling the user the photo has been saved
     func saveNotice(){
         let alertController = UIAlertController(title: "Image Saved!", message: "Your picture was successfully saved.", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
