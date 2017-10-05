@@ -183,79 +183,9 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         // Update the DateTime object
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
     }
-
-    
     
 // MARK: - Events
     
-    @IBAction func btnSave_Tapped_VeryOld(_ sender: AnyObject) {
-        var lStruTask = gstruTask()
-        if (txtTask.text != "") {
-            
-            // Similar Value/Operation
-            lStruTask.Task = txtTask.text!
-            lStruTask.DateTime = dtpTask.date
-            if (swtIsAlarmMessageOn.isOn == true) {
-                lStruTask.IsAlarmMessageOn = 1
-            } else {
-                lStruTask.IsAlarmMessageOn = 0
-            }
-            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
-            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
-            
-            // Not Similar Value/Operation
-            switch _enmOperation {
-            case genmOperation.Add:
-                lStruTask.IsTaskComplete = 0
-                
-                MyGlobals.shared.arrTask.append(lStruTask)
-                txtTask.text = ""
-            case genmOperation.Edit:
-                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[_intIndex].IsTaskComplete // Same Value
-                
-                MyGlobals.shared.arrTask[_intIndex] = lStruTask
-            }
-        }
-        
-        // Back to Root View Controller
-        _ = self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    @IBAction func btnSave_Tapped_Old(_ sender: AnyObject) {
-        
-        var lStruTask = gstruTask()
-        if (txtTask.text != "") {
-            
-            // Similar Value/Operation
-            lStruTask.Task = txtTask.text!
-            lStruTask.DateTime = dtpTask.date
-            if (swtIsAlarmMessageOn.isOn == true) {
-                lStruTask.IsAlarmMessageOn = 1
-            } else {
-                lStruTask.IsAlarmMessageOn = 0
-            }
-            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
-            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
-            
-            // Not Similar Value/Operation
-            switch _enmOperation {
-            case genmOperation.Add:
-                lStruTask.IsTaskComplete = 0
-                
-                MyGlobals.shared.arrTask.append(lStruTask)
-                txtTask.text = ""
-            case genmOperation.Edit:
-                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[_intIndex].IsTaskComplete // Same Value
-                
-                MyGlobals.shared.arrTask[_intIndex] = lStruTask
-            }
-        }
-        
-        // Back to Root View Controller
-        _ = self.navigationController?.popToRootViewController(animated: true)
-        
-    }
-
     @IBAction func btnSave_Tapped(_ sender: AnyObject) {
         if _objTask == nil {
             _objTask = Task(context: gObjContext)
@@ -278,7 +208,6 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         // _ = self.navigationController?.popToRootViewController(animated: true) // Root
         _ = self.navigationController?.popViewController(animated: true)          // Previous
     }
-    
     
     @IBAction func btnPresets_Tapped(_ sender: UIButton) {
         setDate(sender)
