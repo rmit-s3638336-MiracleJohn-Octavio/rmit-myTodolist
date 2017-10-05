@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/CurrentWeatherViewController.swift"
+            timestampString = "528807928.575273"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "CurrentWeatherViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/CurrentWeatherViewController.swift"
+            timestampString = "528814969.128027"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "CurrentWeatherViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.CurrentWeatherViewController.coordinate.getter : (lat : Swift.Double, long : Swift.Double)"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/CurrentWeatherViewController.swift"
+                  timestampString = "528808611.008864"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.CurrentWeatherViewController.coordinate.setter : (lat : Swift.Double, long : Swift.Double)"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/CurrentWeatherViewController.swift"
+                  timestampString = "528808611.011033"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.CurrentWeatherViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; checkMate.CurrentWeatherViewController"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/CurrentWeatherViewController.swift"
+                  timestampString = "528808611.01318"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "399">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.CurrentWeatherViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;checkMate.CurrentWeatherViewController&gt;"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/CurrentWeatherViewController.swift"
+                  timestampString = "528808611.015106"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "293">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/CurrentWeatherViewController.swift"
+            timestampString = "528814461.333059"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "CurrentWeatherViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/Weather.swift"
+            timestampString = "528898284.306037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "SerializationError"
+            landmarkType = "13">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/ForcastService.swift"
+            timestampString = "528903125.040535"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/WeatherViewController.swift"
+            timestampString = "528903222.300101"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "myTodoList4/WeatherViewController.swift"
+            timestampString = "528903250.756964"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "WeatherViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.WeatherViewController.city.getter : Swift.ImplicitlyUnwrappedOptional&lt;Swift.String&gt;"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/WeatherViewController.swift"
+                  timestampString = "528903599.11471"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "83">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.WeatherViewController.city.setter : Swift.ImplicitlyUnwrappedOptional&lt;Swift.String&gt;"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/WeatherViewController.swift"
+                  timestampString = "528903599.116605"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "175">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.WeatherViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; checkMate.WeatherViewController"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/WeatherViewController.swift"
+                  timestampString = "528903599.119595"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "697">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "checkMate.WeatherViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;checkMate.WeatherViewController&gt;"
+                  moduleName = "checkMate"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/annievuong/Desktop/rmit-myTodolist-master/checkMate/checkMate/myTodoList4/WeatherViewController.swift"
+                  timestampString = "528903599.121915"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "593">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
