@@ -8,7 +8,7 @@
 
 import UIKit
 
-class entryTableViewController: UITableViewController, UITextFieldDelegate {
+class entryTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 // MARK: - Controls
     
@@ -36,6 +36,8 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     // Icon
     @IBOutlet weak var imgIcon: UIImageView!
     
+    // Photo
+    @IBOutlet weak var imgPhoto: UIImageView!
     
 // MARK: - Variables
     
@@ -76,27 +78,24 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    func initVariables_Old() {
+    override func viewDidAppear(_ animated: Bool) {
         
-        // Fill up the Lookup
-        MyGlobals.shared.arrTask_Lookup.ToneId = 0
+        /* 
+            Problem: Since that the tableView has a
+            static cells, when the cells exceeds the
+            screen it causes an abnormal display
+            which causes the table to scroll automatically
+            in the middle. 
+         
+            Solution: Disable the scroll on design time
+            then enable it when the view appears on 
+            runtime.
+         
+            Recreate: You can disable the code below
+            to recreate the problem
+        */
+        tableView.isScrollEnabled = true
         
-        switch _enmOperation {
-        case genmOperation.Add:
-            _strTitle = "Add"
-            MyGlobals.shared.arrTask_Lookup.Task = ""
-            MyGlobals.shared.arrTask_Lookup.DateTime = Date()
-            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = 1
-            MyGlobals.shared.arrTask_Lookup.ToneId = 0
-            MyGlobals.shared.arrTask_Lookup.IconFile = ""
-        case genmOperation.Edit:
-            _strTitle = "Edit"
-            MyGlobals.shared.arrTask_Lookup.Task = MyGlobals.shared.arrTask[_intIndex].Task
-            MyGlobals.shared.arrTask_Lookup.DateTime = MyGlobals.shared.arrTask[_intIndex].DateTime
-            MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn = MyGlobals.shared.arrTask[_intIndex].IsAlarmMessageOn
-            MyGlobals.shared.arrTask_Lookup.ToneId = MyGlobals.shared.arrTask[_intIndex].ToneId
-            MyGlobals.shared.arrTask_Lookup.IconFile = MyGlobals.shared.arrTask[_intIndex].IconFile
-        }
     }
     
     func initialize() {
@@ -118,6 +117,12 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
             txtTask.text = task.name
             dtpTask.date  = task.dateTime as! Date
             swtIsAlarmMessageOn.setOn(task.isAlarmOn == 1, animated: true)
+            if task.image != nil {
+                if let imageData = UIImage(data: task.image as! Data) {
+                    imgPhoto.image = imageData
+                }
+            }
+            
         } else {
             // Set the Operation
             _strTitle = "Add"
@@ -143,30 +148,6 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    func displayDataEntry_Old() {
-        
-        // Values taken from the Lookup
-        
-        // Layout the values
-        navItem.title = _strTitle
-        txtTask.text = MyGlobals.shared.arrTask_Lookup.Task
-        dtpTask.date  = MyGlobals.shared.arrTask_Lookup.DateTime
-        swtIsAlarmMessageOn.setOn(MyGlobals.shared.arrTask_Lookup.IsAlarmMessageOn == 1, animated: true)
-        lblToneName.text = "(" + MyGlobals.shared.arrTone[MyGlobals.shared.arrTask_Lookup.ToneId] + ")"
-        if (MyGlobals.shared.arrTask_Lookup.IconFile != "") {
-            imgIcon.image = UIImage(named: MyGlobals.shared.arrTask_Lookup.IconFile)
-        }
-        // Make the UIImage for Icon Circle
-        imgIcon.layer.borderWidth = 2
-        imgIcon.layer.masksToBounds = false
-        imgIcon.layer.borderColor = UIColor.gray.cgColor
-        imgIcon.layer.cornerRadius = 25
-        imgIcon.clipsToBounds = true
-        
-        // Update the DateTime object
-        lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
-    }
-
     func updateLookupData() {
         
         // Values taken from the Lookup
@@ -183,79 +164,9 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         // Update the DateTime object
         lblDateTimeSelected.text = MyGlobals.shared.mDateToString(dtpTask.date)
     }
-
     
+// MARK: - Action
     
-// MARK: - Events
-    
-    @IBAction func btnSave_Tapped_VeryOld(_ sender: AnyObject) {
-        var lStruTask = gstruTask()
-        if (txtTask.text != "") {
-            
-            // Similar Value/Operation
-            lStruTask.Task = txtTask.text!
-            lStruTask.DateTime = dtpTask.date
-            if (swtIsAlarmMessageOn.isOn == true) {
-                lStruTask.IsAlarmMessageOn = 1
-            } else {
-                lStruTask.IsAlarmMessageOn = 0
-            }
-            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
-            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
-            
-            // Not Similar Value/Operation
-            switch _enmOperation {
-            case genmOperation.Add:
-                lStruTask.IsTaskComplete = 0
-                
-                MyGlobals.shared.arrTask.append(lStruTask)
-                txtTask.text = ""
-            case genmOperation.Edit:
-                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[_intIndex].IsTaskComplete // Same Value
-                
-                MyGlobals.shared.arrTask[_intIndex] = lStruTask
-            }
-        }
-        
-        // Back to Root View Controller
-        _ = self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    @IBAction func btnSave_Tapped_Old(_ sender: AnyObject) {
-        
-        var lStruTask = gstruTask()
-        if (txtTask.text != "") {
-            
-            // Similar Value/Operation
-            lStruTask.Task = txtTask.text!
-            lStruTask.DateTime = dtpTask.date
-            if (swtIsAlarmMessageOn.isOn == true) {
-                lStruTask.IsAlarmMessageOn = 1
-            } else {
-                lStruTask.IsAlarmMessageOn = 0
-            }
-            lStruTask.ToneId = MyGlobals.shared.arrTask_Lookup.ToneId
-            lStruTask.IconFile = MyGlobals.shared.arrTask_Lookup.IconFile
-            
-            // Not Similar Value/Operation
-            switch _enmOperation {
-            case genmOperation.Add:
-                lStruTask.IsTaskComplete = 0
-                
-                MyGlobals.shared.arrTask.append(lStruTask)
-                txtTask.text = ""
-            case genmOperation.Edit:
-                lStruTask.IsTaskComplete = MyGlobals.shared.arrTask[_intIndex].IsTaskComplete // Same Value
-                
-                MyGlobals.shared.arrTask[_intIndex] = lStruTask
-            }
-        }
-        
-        // Back to Root View Controller
-        _ = self.navigationController?.popToRootViewController(animated: true)
-        
-    }
-
     @IBAction func btnSave_Tapped(_ sender: AnyObject) {
         if _objTask == nil {
             _objTask = Task(context: gObjContext)
@@ -271,6 +182,8 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         }
         _objTask?.tone = MyGlobals.shared.selectedTone
         _objTask?.iconFile = MyGlobals.shared.selectedIcon
+        _objTask?.image = UIImageJPEGRepresentation(imgPhoto.image!, 1) as NSData?   // You can low compression up to >0
+
         
         // Save
         gObjAppDelegate.saveContext()
@@ -279,20 +192,80 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
         _ = self.navigationController?.popViewController(animated: true)          // Previous
     }
     
-    
     @IBAction func btnPresets_Tapped(_ sender: UIButton) {
         setDate(sender)
+    }
+    
+    @IBAction func btnSelectPhoto_Tapped(_ sender: AnyObject) {
+    
+        let imagePickController = UIImagePickerController()
+        imagePickController.delegate = self
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Camera
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+            if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
+                imagePickController.sourceType = .camera
+                imagePickController.allowsEditing = false
+                self.present(imagePickController, animated: true, completion: nil)
+            }
+        }))
+        
+        //Photo Library
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {(action: UIAlertAction) in
+            if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)) {
+                imagePickController.sourceType = .photoLibrary
+                imagePickController.allowsEditing = true
+                self.present(imagePickController, animated: true, completion: nil)
+            }
+        }))
+        
+        // Cancel BUtton
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Present the actionsheet
+        self.present(actionSheet, animated: true, completion: nil)
+        
     }
     
     @IBAction func dtpTask_ValueChanged(_ sender: UIDatePicker) {
         updateLblDateTimeSelected(sender)
     }
+
+// MARK: - Events
     
     // Remove the focus on textView
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         txtTask.resignFirstResponder()
         return true
     }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imgPhoto.image = image
+        } else{
+            print("Something went wrong")
+        }
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!){
+        // MARK: - Delete this
+        
+//        imgPhoto.image = image
+//        picker.dismiss(animated: true, completion: nil);
+        
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
     
 // MARK: - Navigation
     
@@ -382,9 +355,11 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate {
     }
  
     func saveData() {
-        let task = Task(context: gObjContext)
-        task.name = txtTask.text!
-        gObjAppDelegate.saveContext()
+        // MARK: - Delete this
+        
+//        let task = Task(context: gObjContext)
+//        task.name = txtTask.text!
+//        gObjAppDelegate.saveContext()
     }
     
 }
