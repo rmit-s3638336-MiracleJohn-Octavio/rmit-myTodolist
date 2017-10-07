@@ -219,6 +219,31 @@ class MyGlobals {
     }
 }
 
+// This will hide the keyboard when top is detected
+/*
+ 
+ Usage:
+ 
+ override func viewDidLoad() {
+ super.viewDidLoad()
+ 
+ // This will hide the keyboard when top is detected (See extenxion Below)
+ self.hideKeyboardWhenTappedAround()
+ 
+ }
+ 
+ */
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 
 
 

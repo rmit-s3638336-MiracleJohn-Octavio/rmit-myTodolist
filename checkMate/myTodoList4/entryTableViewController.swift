@@ -69,6 +69,9 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate, UIIm
         
         // Initialize
         initialize()
+        
+        // This will hide the keyboard when top is detected (See extenxion Below)
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -363,3 +366,4 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate, UIIm
     }
     
 }
+

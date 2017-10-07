@@ -28,8 +28,7 @@ class onboardPageViewController: UIPageViewController, UIPageViewControllerDataS
         self.dataSource = self
         self.delegate = self
         
-        
-//        imgBackground!.contentMode = .scaleToFill        
+        // Insert the Background
         view.insertSubview(imgBackground!, at: 0)
         
         if let firstVC = VCArr.first {
