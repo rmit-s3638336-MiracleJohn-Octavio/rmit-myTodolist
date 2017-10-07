@@ -8,13 +8,23 @@
 
 import UIKit
 
+// MARK: - Protocol
+
+// Custom Delegation Step # 1
+protocol ToneSelectedDelegate: class {
+    func toneSelected(strToneSelected: String)
+}
+
 class toneTableViewController: UITableViewController {
     
 // MARK: - Variables
     
     // This will recieve the index from Root
     var _intIndex =  Int()
-
+    
+    // Custom Delegation Step # 2
+    weak var delegate:ToneSelectedDelegate?
+    
 // MARK: - Load
     
     override func viewDidLoad() {
@@ -67,6 +77,9 @@ class toneTableViewController: UITableViewController {
         
         // Get the selected tone
         MyGlobals.shared.selectedTone = MyGlobals.shared.arrTone[indexPath.row]
+        
+        // Custom Delegation Step # 3
+        self.delegate?.toneSelected(strToneSelected: MyGlobals.shared.arrTone[indexPath.row])
         
         // Back to Root View Controller
         // _ = self.navigationController?.popToRootViewController(animated: true) // Root

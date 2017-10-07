@@ -1,5 +1,5 @@
 //
-//  addTableViewController.swift
+//  entryTableViewController.swift
 //  myTodoList4
 //
 //  Created by Miracle John Octavio Jr on 10/08/2017.
@@ -8,7 +8,9 @@
 
 import UIKit
 
-class entryTableViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+// Custom Delegation Step # 4
+class entryTableViewController: UITableViewController, UITextFieldDelegate,
+    UIImagePickerControllerDelegate, UINavigationControllerDelegate, ToneSelectedDelegate {
 
 // MARK: - Controls
     
@@ -46,6 +48,7 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate, UIIm
     var _curDate = Date()
     var _curCalendar = Calendar.current
     var _curComponent = DateComponents()
+    var _selectedTone: String = ""
     
     // Used for Add and Edit
     var _enmOperation = genmOperation.Add
@@ -269,6 +272,11 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate, UIIm
         
     }
     
+    // Custom Delegation Step # 5
+    func toneSelected(strToneSelected: String) {
+        _selectedTone = strToneSelected
+    }
+
     
 // MARK: - Navigation
     
@@ -290,6 +298,8 @@ class entryTableViewController: UITableViewController, UITextFieldDelegate, UIIm
         if (segue.identifier == "segueToneView") {
             let tvc: toneTableViewController = segue.destination as! toneTableViewController
             tvc._intIndex = _intIndex
+            // Custom Delegation Step # 6
+            tvc.delegate = self
         } else if (segue.identifier == "segueIconView") {
             
         }
