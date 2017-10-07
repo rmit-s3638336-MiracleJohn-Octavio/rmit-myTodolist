@@ -123,18 +123,18 @@ class weatherViewController: UIViewController, UISearchBarDelegate  {
                         "code":1000
                      },
                      "wind_mph":0.0,
-                     "wind_kph":0.0,
+                     "wind_kph":0.0,                // Use This
                      "wind_degree":0,
-                     "wind_dir":"N",
+                     "wind_dir":"N",                // Use This
                      "pressure_mb":1021.0,
-                     "pressure_in":30.6,
+                     "pressure_in":30.6,            // Use This
                      "precip_mm":0.0,
-                     "precip_in":0.0,
+                     "precip_in":0.0,               // Use This
                      "humidity":100,
                      "cloud":0,
-                     "feelslike_c":5.0,
+                     "feelslike_c":5.0,             // Use This
                      "feelslike_f":41.0,
-                     "vis_km":10.0,
+                     "vis_km":10.0,                 // Use This
                      "vis_miles":6.0
                  }
          }
