@@ -10,6 +10,8 @@
 		203364A71F79C94A00838BCA /* editViewController_ForDeletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203364A61F79C94A00838BCA /* editViewController_ForDeletion.swift */; };
 		2038213C1F6AE7E200D940FD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2038213A1F6AE7E200D940FD /* Model.xcdatamodeld */; };
 		2038213D1F6AE7E200D940FD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2038213A1F6AE7E200D940FD /* Model.xcdatamodeld */; };
+		205698AD1F87F424000D14B0 /* skyline1.png in Resources */ = {isa = PBXBuildFile; fileRef = 205698AC1F87F424000D14B0 /* skyline1.png */; };
+		205698AF1F87F736000D14B0 /* weatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205698AE1F87F736000D14B0 /* weatherViewController.swift */; };
 		2065BDE81F376DAD00D4DF95 /* Info.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2065BDE71F376DAD00D4DF95 /* Info.rtf */; };
 		206D8CC01F36BB630052AA71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206D8CBF1F36BB630052AA71 /* AppDelegate.swift */; };
 		206D8CC51F36BB630052AA71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 206D8CC31F36BB630052AA71 /* Main.storyboard */; };
@@ -73,6 +75,8 @@
 /* Begin PBXFileReference section */
 		203364A61F79C94A00838BCA /* editViewController_ForDeletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editViewController_ForDeletion.swift; sourceTree = "<group>"; };
 		2038213B1F6AE7E200D940FD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		205698AC1F87F424000D14B0 /* skyline1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skyline1.png; sourceTree = "<group>"; };
+		205698AE1F87F736000D14B0 /* weatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = weatherViewController.swift; sourceTree = "<group>"; };
 		2065BDE71F376DAD00D4DF95 /* Info.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Info.rtf; sourceTree = "<group>"; };
 		206D8CBC1F36BB630052AA71 /* checkMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = checkMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		206D8CBF1F36BB630052AA71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				20E8AD841F4ED27000DF5B38 /* onboardPageViewController.swift */,
 				20BE8F281F3C6C8B009968B7 /* entryTableViewController.swift */,
 				209BFA791F3C269F006285F1 /* chkButton.swift */,
+				205698AE1F87F736000D14B0 /* weatherViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 		20E8AD391F4AB7AC00DF5B38 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				205698AC1F87F424000D14B0 /* skyline1.png */,
 				20FE84E61F4F219E00DB755F /* obOne.png */,
 				20FE84E71F4F219E00DB755F /* obThree.png */,
 				20FE84E81F4F219E00DB755F /* obTwo.png */,
@@ -366,6 +372,7 @@
 				20E8AD671F4B253400DF5B38 /* 19.png in Resources */,
 				20E8AD451F4AB7D800DF5B38 /* 06.png in Resources */,
 				20E8AD581F4ABCF900DF5B38 /* 15.png in Resources */,
+				205698AD1F87F424000D14B0 /* skyline1.png in Resources */,
 				20E8AD6D1F4BC8BD00DF5B38 /* 22.png in Resources */,
 				20E8AD6F1F4BC8BD00DF5B38 /* 24.png in Resources */,
 				20E8AD571F4ABCF900DF5B38 /* 14.png in Resources */,
@@ -407,6 +414,7 @@
 				20E8AD321F497AF900DF5B38 /* taskTableViewController.swift in Sources */,
 				20BE8F2B1F3C81B9009968B7 /* toneTableViewController.swift in Sources */,
 				20E8AD341F4A85F900DF5B38 /* iconCollectionViewController.swift in Sources */,
+				205698AF1F87F736000D14B0 /* weatherViewController.swift in Sources */,
 				206D8CC01F36BB630052AA71 /* AppDelegate.swift in Sources */,
 				20BE8F291F3C6C8B009968B7 /* entryTableViewController.swift in Sources */,
 				2038213C1F6AE7E200D940FD /* Model.xcdatamodeld in Sources */,
