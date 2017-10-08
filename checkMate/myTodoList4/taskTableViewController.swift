@@ -8,10 +8,14 @@
 
 import UIKit
 import CoreData
+import AudioToolbox
 
 class taskTableViewController: UITableViewController {
     
 // MARK: - Variables
+    
+    // Prevent reload from executing
+    var _blnSwipeDetected = false
     
     // Array that will hold the record from Core Data
     var _arrTask: [Task]? = [Task]()
@@ -25,7 +29,8 @@ class taskTableViewController: UITableViewController {
         MyGlobals.shared.mInitialize()        
         
         // Create Timer
-        let tmrReloadData = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
+        // Note: timeInterval is in seconds
+        let tmrReloadData = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(reloadData), userInfo: nil, repeats: true)
         tmrReloadData.fire()
     }
     
@@ -65,7 +70,11 @@ class taskTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        self.tableView.reloadData()
+        
+        if _blnSwipeDetected == false {
+            self.tableView.reloadData()
+        }
+        
     }
     
 // MARK: - DataSource
@@ -96,7 +105,11 @@ class taskTableViewController: UITableViewController {
         print("Row: \(row)")
     }
     
-    // mjNotes: Delete Row
+    // mjNotes: Swipe
+    override func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        // Swipe detected!
+        _blnSwipeDetected = true
+    }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
@@ -109,9 +122,16 @@ class taskTableViewController: UITableViewController {
             
             tableView.reloadData()              // Reload data from TableView
             
+            // Swipe committed
+            _blnSwipeDetected = false
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
+    }
+    override func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        // Swipe cancelled!
+        _blnSwipeDetected = false
     }
     
 // MARK: - Data Load
@@ -139,7 +159,7 @@ class taskTableViewController: UITableViewController {
                 cell.lblDateTime.textColor = UIColor.red
             } else {
                 // Future
-                cell.lblDateTime.text = MyGlobals.shared.mDateToString(_arrTask?[indexPath.row].dateTime as! Date,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutes(Int(elapsed) * -1) + ")"
+                cell.lblDateTime.text = MyGlobals.shared.mDateToString(_arrTask?[indexPath.row].dateTime as! Date,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutesSeconds(Int(elapsed) * -1) + ")"
                 cell.lblDateTime.textColor = UIColor.darkGray
             }
         } else {
@@ -231,7 +251,6 @@ class taskTableViewController: UITableViewController {
         return cell
     }
 
-    
 // MARK: - Navigation
     
     
@@ -300,13 +319,19 @@ class taskTableViewController: UITableViewController {
         if (dteDateOnList_DateFormat == dteDateToday_DateFormat) {
             // Today
             let elapsed = Date().timeIntervalSince(dteDateOnList_TimeFormat)
+            if (dteDateOnList_TimeFormat == dteDateToday_TimeFormat) {
+                // Alarm
+//                let id: UInt32 = UInt32(txtSystemSoundID.text!)!
+                // List of all sounds: https://github.com/TUNER88/iOSSystemSoundsLibrary
+                AudioServicesPlaySystemSound(SystemSoundID(1304)) // 1304 alarm.caf
+            }
             if (dteDateOnList_TimeFormat < dteDateToday_TimeFormat) {
                 // Past
                 strRetDateTime = MyGlobals.shared.mDateToString(dateTime,genmDateFormat.HrsMinSec)
                 objRetUIColor = UIColor.red
             } else {
                 // Future
-                strRetDateTime = MyGlobals.shared.mDateToString(dateTime,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutes(Int(elapsed) * -1) + ")"
+                strRetDateTime = MyGlobals.shared.mDateToString(dateTime,genmDateFormat.HrsMinSec) + " (" + MyGlobals.shared.mSecondsToHoursMinutesSeconds(Int(elapsed) * -1) + ")"
                 objRetUIColor = UIColor.darkGray
             }
         } else {

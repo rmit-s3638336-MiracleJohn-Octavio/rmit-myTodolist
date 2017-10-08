@@ -55,6 +55,7 @@
 		20E8AD761F4C2CA900DF5B38 /* 26.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD731F4C2CA900DF5B38 /* 26.png */; };
 		20E8AD771F4C2CA900DF5B38 /* 27.png in Resources */ = {isa = PBXBuildFile; fileRef = 20E8AD741F4C2CA900DF5B38 /* 27.png */; };
 		20E8AD851F4ED27000DF5B38 /* onboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E8AD841F4ED27000DF5B38 /* onboardPageViewController.swift */; };
+		20FB81731F89536C009F6FBE /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB81721F89536C009F6FBE /* testViewController.swift */; };
 		20FE84DF1F4F0C9700DB755F /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 20FE84DE1F4F0C9700DB755F /* bg.jpg */; };
 		20FE84E91F4F219E00DB755F /* obOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FE84E61F4F219E00DB755F /* obOne.png */; };
 		20FE84EA1F4F219E00DB755F /* obThree.png in Resources */ = {isa = PBXBuildFile; fileRef = 20FE84E71F4F219E00DB755F /* obThree.png */; };
@@ -122,6 +123,7 @@
 		20E8AD731F4C2CA900DF5B38 /* 26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 26.png; sourceTree = "<group>"; };
 		20E8AD741F4C2CA900DF5B38 /* 27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 27.png; sourceTree = "<group>"; };
 		20E8AD841F4ED27000DF5B38 /* onboardPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = onboardPageViewController.swift; sourceTree = "<group>"; };
+		20FB81721F89536C009F6FBE /* testViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		20FE84DE1F4F0C9700DB755F /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		20FE84E61F4F219E00DB755F /* obOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obOne.png; sourceTree = "<group>"; };
 		20FE84E71F4F219E00DB755F /* obThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obThree.png; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				20BE8F281F3C6C8B009968B7 /* entryTableViewController.swift */,
 				209BFA791F3C269F006285F1 /* chkButton.swift */,
 				205698AE1F87F736000D14B0 /* weatherViewController.swift */,
+				20FB81721F89536C009F6FBE /* testViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				209BFA7A1F3C269F006285F1 /* chkButton.swift in Sources */,
 				20E8AD301F49269800DF5B38 /* toneTableViewCell.swift in Sources */,
 				20E8AD2E1F49204C00DF5B38 /* taskTableViewCell.swift in Sources */,
+				20FB81731F89536C009F6FBE /* testViewController.swift in Sources */,
 				20E8AD851F4ED27000DF5B38 /* onboardPageViewController.swift in Sources */,
 				20BE8F2F1F3C9801009968B7 /* MyGlobals.swift in Sources */,
 				203364A71F79C94A00838BCA /* editViewController_ForDeletion.swift in Sources */,
