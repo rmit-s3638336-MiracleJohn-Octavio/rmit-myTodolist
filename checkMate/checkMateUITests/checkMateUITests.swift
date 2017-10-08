@@ -28,26 +28,26 @@ class checkMateUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-             
-        XCUIDevice.shared().orientation = .portrait
-        
-        let app = XCUIApplication()
-        let tablesQuery = app.tables
-        tablesQuery.cells.containing(.staticText, identifier:"Fri, 25 Aug 2017, 08:00 AM").buttons["Button"].tap()
-        tablesQuery.staticTexts["Study Swift"].tap()
-        app.buttons["Return"].tap()
-        tablesQuery.staticTexts["(Chimes)"].tap()
-        tablesQuery.staticTexts["Constellation"].tap()
-        tablesQuery.buttons["+3 Hours"].tap()
-        tablesQuery.switches["Alarm"].tap()
-        app.navigationBars["Edit"].buttons["Save"].tap()
-        
-        app.tabBars.buttons["How to"].tap()
-        app.images["obOne.png"].swipeLeft()
-        app.images["obTwo.png"].swipeLeft()
-    }
+//    func testExample() {
+//        // Use recording to get started writing UI tests.
+//        // Use XCTAssert and related functions to verify your tests produce the correct results.
+//             
+//        XCUIDevice.shared().orientation = .portrait
+//        
+//        let app = XCUIApplication()
+//        let tablesQuery = app.tables
+//        tablesQuery.cells.containing(.staticText, identifier:"Fri, 25 Aug 2017, 08:00 AM").buttons["Button"].tap()
+//        tablesQuery.staticTexts["Study Swift"].tap()
+//        app.buttons["Return"].tap()
+//        tablesQuery.staticTexts["(Chimes)"].tap()
+//        tablesQuery.staticTexts["Constellation"].tap()
+//        tablesQuery.buttons["+3 Hours"].tap()
+//        tablesQuery.switches["Alarm"].tap()
+//        app.navigationBars["Edit"].buttons["Save"].tap()
+//        
+//        app.tabBars.buttons["How to"].tap()
+//        app.images["obOne.png"].swipeLeft()
+//        app.images["obTwo.png"].swipeLeft()
+//    }
     
 }

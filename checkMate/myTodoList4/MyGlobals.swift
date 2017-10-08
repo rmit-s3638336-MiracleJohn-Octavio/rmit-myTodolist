@@ -53,7 +53,7 @@ class MyGlobals {
     
 // MARK: - Initialization
     
-    private init() {
+    public init() {
     }
     
 // MARK: - Variables

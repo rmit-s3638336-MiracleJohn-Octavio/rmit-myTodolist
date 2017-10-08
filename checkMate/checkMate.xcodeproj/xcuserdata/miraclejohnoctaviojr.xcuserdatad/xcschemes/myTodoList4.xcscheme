@@ -38,6 +38,16 @@
                ReferencedContainer = "container:checkMate.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "20FB81771F89FFFB009F6FBE"
+               BuildableName = "checkMateTests.xctest"
+               BlueprintName = "checkMateTests"
+               ReferencedContainer = "container:checkMate.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
