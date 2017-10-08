@@ -30,7 +30,7 @@ class weatherViewController: UIViewController, UISearchBarDelegate  {
     
     // Saved City
     let _strNSUserDefaultKey = "SavedCity"
-    var _strSavedCity = ""
+    var _strSavedCity = "Melbourne"
 
 // MARK: - Load
     
@@ -74,8 +74,8 @@ class weatherViewController: UIViewController, UISearchBarDelegate  {
         // Retrieve City from UserDefault
         if UserDefaults.standard.object(forKey: _strNSUserDefaultKey) != nil {
             _strSavedCity = UserDefaults.standard.string(forKey: _strNSUserDefaultKey)!
-            updateWeather(_strSavedCity)
         }
+        updateWeather(_strSavedCity)
         
     }
 
